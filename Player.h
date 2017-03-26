@@ -7,6 +7,8 @@
 
 #include "Character.h"
 
+class Enemy;
+
 class Player: public Character{
     virtual void attack(Enemy& c);
     virtual int recieveAttack(Player& c);
@@ -14,22 +16,22 @@ class Player: public Character{
 
 class Drow: public Player{
     void attack(Enemy& c);
-    int recieveAttack(Player& c);
+    int recieveAttack(Enemy& c);
 };
 
 class Vampire: public Player{
     void attack(Enemy& c);
-    int recieveAttack(Player& c);
+    int recieveAttack(Enemy& c);
 };
 
 class Troll: public Player{
     void attack(Enemy& c);
-    int recieveAttack(Player& c);
+    int recieveAttack(Enemy& c);
 };
 
 class Shade: public Player{
     void attack(Enemy& c);
-    int recieveAttack(Player& c);
+    int recieveAttack(Enemy& c);
 };
 
 #endif //CC3K_PLAYER_H
