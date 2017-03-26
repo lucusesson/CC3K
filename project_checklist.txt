@@ -2,9 +2,9 @@ CS246 Final Project Checklist
 
 Pre-project
 
-__ Submit group.txt during assignment 4.
+X Submit group.txt during assignment 4.
 
-__ Check that group shows up on Marmoset.
+X Check that group shows up on Marmoset.
 
 
 Due Date 1
