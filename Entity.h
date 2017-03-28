@@ -9,9 +9,9 @@ class Entity{
     int x;
     int y;
     char symbol;
-    char getSymbol();
-    virtual void attack(Entity*);
-    virtual void alterPlayer(Entity*);
+    //char getSymbol();
+    //virtual void attack(Entity*);
+    //virtual void alterPlayer(Entity*);
 };
 
 #endif //CC3K_ENTITY_H

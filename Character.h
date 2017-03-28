@@ -6,10 +6,15 @@
 #define CC3K_CHARACTER_H
 
 #include "Entity.h"
+#include <string>
+#include <stdio.h>
+#include <iostream>
 
 class Character : public Entity {
-    int health, maxHealth, atk, def, gold;
-    int getHealth();
+protected:
+    int health, maxHealth, atk, def, gold, x, y;
+    int damage(int def, int atk);
+   /* int getHealth();
     int getAtk();
     int getDef();
     int getGold();
@@ -18,6 +23,11 @@ class Character : public Entity {
     void alterDef();
     void alterGold();
     void move(int direction);
+    void setXY(int x, int y)*/
+public:
+    std::string race;
+    virtual void attack(Character* c) = 0;
+    virtual int receiveAttack(Character* c) = 0;
 };
 
 #endif //CC3K_CHARACTER_H

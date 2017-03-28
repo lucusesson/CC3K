@@ -6,32 +6,37 @@
 #define CC3K_PLAYER_H
 
 #include "Character.h"
+#include <iostream>
 
 class Enemy;
 
 class Player: public Character{
-    virtual void attack(Enemy& c);
-    virtual int recieveAttack(Player& c);
+public:
+    Player();
+    //void attack(Character& c) = 0;
+    //int recieveAttack(Character& c)= 0;
 };
 
 class Drow: public Player{
-    void attack(Enemy& c);
-    int recieveAttack(Enemy& c);
+public:
+    Drow();
+    void attack(Character* c);
+    int receiveAttack(Character* c);
 };
 
 class Vampire: public Player{
-    void attack(Enemy& c);
-    int recieveAttack(Enemy& c);
+    void attack(Character* c);
+    int receiveAttack(Character* c);
 };
 
 class Troll: public Player{
-    void attack(Enemy& c);
-    int recieveAttack(Enemy& c);
+    void attack(Character* c);
+    int receiveAttack(Character* c);
 };
 
 class Shade: public Player{
-    void attack(Enemy& c);
-    int recieveAttack(Enemy& c);
+    void attack(Character* c);
+    int receiveAttack(Character* c);
 };
 
 #endif //CC3K_PLAYER_H

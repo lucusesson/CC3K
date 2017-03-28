@@ -3,3 +3,8 @@
 //
 
 #include "Character.h"
+#include <math.h>
+
+int Character::damage(int def, int atk) {
+    ceil((100/(100+def))*atk);
+}
