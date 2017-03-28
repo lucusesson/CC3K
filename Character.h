@@ -5,12 +5,11 @@
 #ifndef CC3K_CHARACTER_H
 #define CC3K_CHARACTER_H
 
-#include "Entity.h"
 #include <string>
 #include <stdio.h>
 #include <iostream>
 
-class Character : public Entity {
+class Character {
 protected:
     int health, maxHealth, atk, def, gold, x, y;
     int damage(int def, int atk);

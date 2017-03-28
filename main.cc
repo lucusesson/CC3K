@@ -4,7 +4,6 @@
 
 #include <stdio.h>
 
-#include "Entity.h"
 #include "Character.h"
 #include "Player.h"
 #include "Enemy.h"
