@@ -5,8 +5,14 @@
 #include "Character.h"
 #include <math.h>
 
+int Character::miss() {
+    srand(time(0));
+    int a = rand() % 2;
+    return a;
+}
+
 int Character::damage(int def, int atk) {
-    return ceil((100/(100.0+def))*atk);
+    return ceil((100.0/(100.0+def))*atk);
 }
 
 int Character::getAtk() {

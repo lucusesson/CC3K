@@ -22,12 +22,13 @@ protected:
     void move(int direction);
     void setXY(int x, int y)*/
 public:
+    std::string race;
+    int miss();
     int getHealth();
     int getAtk();
     int getDef();
     int getGold();
     void getSummary();
-    std::string race;
     //virtual void addPotion(Item *p) = 0;
     //virtual bool containPotion(Item *p) = 0;
     virtual void attack(Character* c) = 0;

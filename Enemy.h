@@ -13,19 +13,19 @@
 class Enemy: public Character{
 public:
     Enemy();
-    int miss();
 };
 
 class Merchant: public Enemy{
     static int threat;
+private:
+    void setThreat();
 public:
     Merchant();
     void attack(Character* c);
     int receiveAttack(Character* c);
+    int getThreat();
 };
 
-int Merchant::threat = 0;
-/*
 class Human: public Enemy{
     Human();
     void attack(Character* c);
@@ -34,34 +34,33 @@ class Human: public Enemy{
 
 class Dwarf: public Enemy{
     Dwarf();
-    void attack(Player& c);
+    void attack(Character* c);
     int receiveAttack(Character* c);
 };
 
 class Halfling: public Enemy{
     Halfling();
-    void attack(Player& c);
+    void attack(Character* c);
     int receiveAttack(Character* c);
 };
 
 class Elf: public Enemy{
     Elf();
-    void attack(Player& c);
+    void attack(Character* c);
     int receiveAttack(Character* c);
 };
 
 class Orc: public Enemy{
     Orc();
-    void attack(Player& c);
+    void attack(Character* c);
     int receiveAttack(Character* c);
 };
 
 class Dragon: public Enemy{
     Dragon();
-    void attack(Player& c);
+    void attack(Character* c);
     int receiveAttack(Character* c);
 };
-*/
 
 
 

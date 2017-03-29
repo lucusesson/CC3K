@@ -16,8 +16,6 @@ public:
     Player();
 //    void addPotion(Item *p) override;
 //    bool containPotion(Item *p) override;
-    //void attack(Character& c) = 0;
-    //int recieveAttack(Character& c)= 0;
 };
 
 class Drow: public Player{
@@ -28,16 +26,25 @@ public:
 };
 
 class Vampire: public Player{
+    Vampire();
     void attack(Character* c);
     int receiveAttack(Character* c);
 };
 
 class Troll: public Player{
+    Troll();
     void attack(Character* c);
     int receiveAttack(Character* c);
 };
 
 class Shade: public Player{
+    Shade();
+    void attack(Character* c);
+    int receiveAttack(Character* c);
+};
+
+class Goblin: public Player{
+    Goblin();
     void attack(Character* c);
     int receiveAttack(Character* c);
 };
