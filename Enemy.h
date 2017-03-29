@@ -17,12 +17,14 @@ public:
 };
 
 class Merchant: public Enemy{
+    static int threat;
 public:
     Merchant();
     void attack(Character* c);
-
     int receiveAttack(Character* c);
 };
+
+int Merchant::threat = 0;
 /*
 class Human: public Enemy{
     Human();

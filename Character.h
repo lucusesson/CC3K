@@ -13,10 +13,8 @@ class Character {
 protected:
     int health, maxHealth, atk, def, gold, x, y;
     int damage(int def, int atk);
-   /* int getHealth();
-    int getAtk();
-    int getDef();
-    int getGold();
+
+    /*
     void alterHealth();
     void alterAtk();
     void alterDef();
@@ -24,9 +22,14 @@ protected:
     void move(int direction);
     void setXY(int x, int y)*/
 public:
+    int getHealth();
+    int getAtk();
+    int getDef();
+    int getGold();
+    void getSummary();
     std::string race;
-    virtual void addPotion(Item *p) = 0;
-    virtual bool containPotion(Item *p) = 0;
+    //virtual void addPotion(Item *p) = 0;
+    //virtual bool containPotion(Item *p) = 0;
     virtual void attack(Character* c) = 0;
     virtual int receiveAttack(Character* c) = 0;
 };

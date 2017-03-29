@@ -50,7 +50,13 @@ int Merchant::receiveAttack(Character *c) {
         std::cout << "miss";
         return -1;
     }
-    std::cout <<
+    int damage = this->damage(this->def, c->getAtk());
+    this->health -= damage;
+    if (this->health < 0){
+        std:: cout << 'Dead';
+        return 0;
+    }
+    return 1;
 }
 
 

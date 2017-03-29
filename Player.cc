@@ -18,7 +18,7 @@ void Drow::attack(Character *c) {
 int Drow::receiveAttack(Character *c) {
     return 1;
 }
-
+/*
 void Player::addPotion(Item *p) {
 	potions->push_back(p);
 }
@@ -28,4 +28,4 @@ bool Player::containPotion(Item *p) {
 		if(x.whatKind == p->whatKind) return true;
 	}
 	return false;
-}
+}*/
