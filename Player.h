@@ -7,12 +7,15 @@
 
 #include "Character.h"
 #include <iostream>
+#include <vector>
 
 class Enemy;
 
 class Player: public Character{
 public:
     Player();
+    void addPotion(Item *p) override;
+    bool containPotion(Item *p) override;
     //void attack(Character& c) = 0;
     //int recieveAttack(Character& c)= 0;
 };

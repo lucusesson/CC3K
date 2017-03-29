@@ -3,7 +3,7 @@
 
 using namespace std;
 
-smallGold::smallGold() : value{1} {}
+smallGold::smallGold() : value{1}, whatKind("small") {}
 
 smallGold::~smallGold() {}
 

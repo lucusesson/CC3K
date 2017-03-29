@@ -1,7 +1,6 @@
 #ifndef __GH__
 #define __GH__
 
-#include "Entity.h"
 #include <string>
 
 

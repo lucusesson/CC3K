@@ -2,7 +2,7 @@
 
 using namespace std;
 
-atkBoost::atkBoost() : value{5} {}
+atkBoost::atkBoost() : value{5}, whatKind{"atkBoost"} {}
 
 atkBoost::~atkBoost() {}
 
