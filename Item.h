@@ -6,5 +6,5 @@ class Item {
 	int value;
 	string whatKind;
 public:
-	void alterPlayer(Character &c);
+	virtual void alterPlayer(Character &c);
 }
