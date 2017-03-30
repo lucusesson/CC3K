@@ -14,6 +14,7 @@ class Character {
 protected:
     int health, maxHealth, atk, def, gold, x, y;
     int damage(int def, int atk);
+    char symbol;
 
     /*
     void alterHealth();

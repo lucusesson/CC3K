@@ -12,7 +12,7 @@ class Subject {
   void attach(Observer *o);  
   void notifyObservers(SubscriptionType t, Info &i);
   void notifyObservers(SubscriptionType t);
-  virtual ~Subject() = 0;
+  virtual ~Subject() = default;
 };
 
 #endif

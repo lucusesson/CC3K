@@ -9,6 +9,6 @@ class Observer {
   virtual void notify(Info &i) = 0;  // pass the Cell that called
                                                   // the notify method
   virtual SubscriptionType subType() const = 0;
-  virtual ~Observer();
+  virtual ~Observer() = default;
 };
 #endif

@@ -51,3 +51,7 @@ void Character::getSummary() {
     std::cout << "def: " << def << std::endl;
     std::cout << "gold: " << gold << std::endl;
 }
+
+char Character::getSymbol() {
+    return this->symbol;
+}
