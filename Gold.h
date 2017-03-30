@@ -2,8 +2,8 @@
 #define __GH__
 
 #include <string>
-#include "item.h"
-class Character;
+#include "Item.h"
+#include "Character.h"
 
 
 

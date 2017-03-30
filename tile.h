@@ -2,13 +2,8 @@
 #define _TILE_H_
 #include "subject.h"
 #include "observer.h"
-#include "item.h"
-#include "character.h"
-
-
-
-class Character;
-class Item;
+#include "Item.h"
+#include "Character.h"
 
 class Tile : public Subject, public Observer {
 
