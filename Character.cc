@@ -5,6 +5,36 @@
 #include "Character.h"
 #include <math.h>
 
+int Character::miss() {
+    srand(time(0));
+    int a = rand() % 2;
+    return a;
+}
+
 int Character::damage(int def, int atk) {
-    ceil((100/(100+def))*atk);
+    return ceil((100.0/(100.0+def))*atk);
+}
+
+int Character::getAtk() {
+    return atk;
+}
+
+int Character::getHealth() {
+    return health;
+
+}
+
+int Character::getDef() {
+    return def;
+}
+
+int Character::getGold() {
+    return gold;
+}
+
+void Character::getSummary() {
+    std::cout << "Health: " << health << std::endl;
+    std::cout << "atk: " << atk << std::endl;
+    std::cout << "def: " << def << std::endl;
+    std::cout << "gold: " << gold << std::endl;
 }
