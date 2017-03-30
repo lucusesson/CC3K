@@ -11,6 +11,19 @@ int Character::miss() {
     return a;
 }
 
+void Character::setXY(int x, int y) {
+    this->x = x;
+    this->y=y;
+}
+
+void Character::alterHealth(int a) {
+    this->health += a;
+}
+
+void Character::alterGold(int a) {
+    this->gold += a;
+}
+
 int Character::damage(int def, int atk) {
     return ceil((100.0/(100.0+def))*atk);
 }

@@ -2,6 +2,9 @@
 #define _TILE_H_
 #include "subject.h"
 #include "observer.h"
+#include "item.h"
+#include "character.h"
+
 
 
 class Character;

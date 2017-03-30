@@ -4,17 +4,18 @@
 #include <iostream>
 
 void Subject::attach(Observer *o) { 
-	observers.emplace_back(o);
+	observers.push_back(o);
 }
 
 void Subject::notifyObservers(SubscriptionType t, Info &i) {
 	for (auto ob : observers) {
-		if (ob->subType() == t) ob->notify(*this, i);
+		if (ob->subType() == t) ob->notify(i);
 	}
 }
 
 void Subject::notifyObservers(SubscriptionType t) {
 	for (auto ob : observers) {
-		if (ob->subType() == t) ob->notify(*this);
+		Info i {nullptr, 0, 0, 0, 0};
+		if (ob->subType() == t) ob->notify(i);
 	}	
 }

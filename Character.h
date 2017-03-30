@@ -29,6 +29,10 @@ public:
     int getAtk();
     int getDef();
     int getGold();
+    char getSymbol();
+    void alterHealth(int a);
+    void alterGold(int a);
+    void setXY(int x, int y);
     void getSummary();
     virtual void addPotion(Item *p) = 0;
     virtual bool containPotion(Item *p) = 0;

@@ -1,13 +1,16 @@
 #include "Gold.h"
 
 
+
 using namespace std;
 
-smallGold::smallGold() : value{1}, whatKind("small") {}
+smallGold::smallGold() {
+	this->value = 1;
+	this->whatKind="small";
+}
 
 smallGold::~smallGold() {}
 
-smallGold::alterPlayer(Character &c) {
+void smallGold::alterPlayer(Character &c) {
 	c.alterGold(1);
 }
-

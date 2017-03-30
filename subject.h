@@ -2,7 +2,8 @@
 #define _SUBJECT_H_
 #include <vector>
 #include "subscriptions.h"
-class Info;
+#include "info.h"
+
 class Observer;
 
 class Subject {

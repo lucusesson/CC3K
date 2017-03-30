@@ -2,10 +2,13 @@
 
 using namespace std;
 
-atkBoost::atkBoost() : value{5}, whatKind{"atkBoost"} {}
+atkBoost::atkBoost() {
+	this->value = 5;
+	this->whatKind = "atkBoost";
+}
 
 atkBoost::~atkBoost() {}
 
-atkBoost::alterPlayer(Character &c) {
+void atkBoost::alterPlayer(Character &c) {
 	c.alterHealth(value);
 }
