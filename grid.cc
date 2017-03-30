@@ -1,8 +1,12 @@
 #include "grid.h"
 
+Observer::~Observer() {}
+
 Grid::Grid(std::ifstream &i) {
 	initGrid(i);
 }
+
+Grid::~Grid() {}
 
 void Grid::initGrid(std::ifstream &i) {
 	char tile;
