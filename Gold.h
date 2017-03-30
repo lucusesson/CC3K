@@ -3,7 +3,7 @@
 
 #include <string>
 #include "item.h"
-#include "Character.h"
+class Character;
 
 
 

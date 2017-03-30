@@ -8,7 +8,8 @@ protected:
 	std::string whatKind;
 	char symbol;
 public:
-	virtual void alterPlayer(Character &c);
-	virtual char getSymbol();
-	virtual void setXY(int x, int y);
+	virtual ~Item() = 0;
+	virtual void alterPlayer(Character &c) = 0;
+	virtual char getSymbol() = 0;
+	void setXY(int x, int y);
 };
