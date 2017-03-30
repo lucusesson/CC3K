@@ -4,7 +4,7 @@ OBJECTS=main.o Character.o Item.o Enemy.o Gold.o grid.o Player.o Potion.o subjec
 DEPENDS=${OBJECTS:.o=.d}
 EXEC=CC3K
 ${EXEC}: ${OBJECTS}
-	${CXX} ${CXXFLAGS} ${OBJECTS} -o ${EXEC}
+	${CXX} ${CXXFLAGS} ${OBJECTS} -o ${EXEC} -lX11
 -include ${DEPENDS}
 
 clean:
