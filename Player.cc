@@ -141,14 +141,14 @@ int Shade::receiveAttack(Character *c) {
     }
     return 1;
 }
-/*
+
 void Player::addPotion(Item *p) {
-	potions->push_back(p);
+	//potions->push_back(p);
 }
 
 bool Player::containPotion(Item *p) {
-	for(auto &x : potions) {
-		if(x.whatKind == p->whatKind) return true;
-	}
+	//for(auto &x : potions) {
+	//	if(x.whatKind == p->whatKind) return true;
+	//}
 	return false;
-}*/
+}

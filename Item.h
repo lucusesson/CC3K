@@ -1,10 +1,9 @@
 #include <string>
-
-
+#include "Character.h"
 
 class Item {
 	int value;
-	string whatKind;
+	std::string whatKind;
 public:
 	virtual void alterPlayer(Character &c);
-}
+};

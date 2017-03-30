@@ -9,6 +9,14 @@ int Merchant::threat = 0;
 
 Enemy::Enemy() {}
 
+void Enemy::addPotion(Item *p) {
+    return;
+}
+
+bool Enemy::containPotion(Item *p) {
+    return false;
+}
+
 Human::Human() {
     this->race = "Human";
     this->health = 140;
@@ -145,7 +153,6 @@ void Merchant::attack(Character *c) {
 }
 
 int Merchant::receiveAttack(Character *c) {
-    void attack(Character* c);
     int damage = this->damage(this->def, c->getAtk());
     this->health -= damage;
     this->getSummary();

@@ -13,6 +13,8 @@
 class Enemy: public Character{
 public:
     Enemy();
+    void addPotion(Item *p);
+    bool containPotion(Item *p);
 };
 
 class Merchant: public Enemy{
