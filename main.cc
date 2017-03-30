@@ -4,12 +4,8 @@
 
 #include <stdio.h>
 
-#include "Character.h"
-#include "Player.h"
-#include "Enemy.h"
+#include "grid.h"
 
 int main(){
-    Character *h = new Drow();
-    Character *e = new Merchant();
-    h->attack(e);
+    Grid g = new Grid();
 }
