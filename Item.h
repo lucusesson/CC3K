@@ -1,3 +1,6 @@
+#ifndef _ITEM_H_
+#define _ITEM_H_
+
 #include <string>
 #include "Character.h"
 
@@ -13,3 +16,5 @@ public:
 	virtual char getSymbol() = 0;
 	void setXY(int x, int y);
 };
+
+#endif
