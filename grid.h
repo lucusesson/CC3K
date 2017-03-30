@@ -6,7 +6,9 @@
 #include <string>
 #include "tile.h"
 #include "window.h"
-#include "Item.h"
+
+class Character;
+class Item;
 
 class Grid : public Observer {
 private:
