@@ -12,6 +12,13 @@ bool Character::isDead() {
     return false;
 }
 
+void Character::setRace(std::string race) {
+    this->race = race;
+}
+
+std::string Character::getRace() {
+    return race;
+}
 int Character::miss() {
     srand(time(0));
     int a = rand() % 2;
