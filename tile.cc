@@ -18,7 +18,7 @@ char Tile::getSymbol() {
 }
 
 bool Tile::isOccupied() {
-	if(character == nullptr && item = nullptr) {
+	if(character == nullptr && item == nullptr) {
 		return true;
 	}
 	else return false;

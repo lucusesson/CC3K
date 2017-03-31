@@ -54,7 +54,7 @@ healthBoost::healthBoost() {
 
 healthBoost::~healthBoost() {}
 
-healthBoost::alterPlayer(Character &c) {
+void healthBoost::alterPlayer(Character &c) {
 	c.alterHealth(value);
 }
 
