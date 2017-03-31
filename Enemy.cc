@@ -18,14 +18,14 @@ bool Enemy::containPotion(Item *p) {
 }
 
 Human::Human() {
-    this->race = "Human";
+    this->setRace("Human");
     this->health = 140;
     this->atk = 20;
     this->def = 20;
 }
 
 Halfling::Halfling() {
-    this->race = "Halfling";
+    this->setRace("Halfling");
     this->health = 100;
     this->atk = 15;
     this->def = 20;
@@ -98,7 +98,7 @@ Elf::Elf() {
 
 void Elf::attack(Character *c) {
     c->receiveAttack(this);
-    if (c->race != "Drow"){
+    if (c->getRace() != "Drow"){
         c->receiveAttack(this);
     }
 }
@@ -138,7 +138,7 @@ int Orc::receiveAttack(Character *c) {
 }
 
 Merchant::Merchant() {
-    this->race = "Merchant";
+    this->setRace("Merchant");
     this->health = 30;
     this->atk = 70;
     this->def = 5;

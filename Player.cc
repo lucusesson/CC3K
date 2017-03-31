@@ -8,10 +8,11 @@
 Player::Player() {}
 
 Drow::Drow() {
-    this->race = "Drow";
+    this->setRace("Drow");
     this->health = 150;
     this->atk = 25;
     this->def = 15;
+    this->gold = 0;
 }
 
 void Drow::attack(Character *c) {
@@ -24,19 +25,20 @@ int Drow::receiveAttack(Character *c) {
 
 //TODO: 5HP Every Attack, No Max HP
 Vampire::Vampire() {
-    this->race = "Vampire";
+    this->setRace("Vampire");
     this->health = 50;
     this->atk = 25;
     this->def = 25;
+    this->gold = 0;
     this->maxHealth = 50;
 }
 
 void Vampire::attack(Character *c) {
     int a = c->receiveAttack(this);
-    if ((a == 0 || a == 1) && c->race != "Dwarf"){
+    if ((a == 0 || a == 1) && c->getRace() != "Dwarf"){
         this->health += 5;
     }
-    else if (c->race == "Dward") {
+    else if (c->getRace() == "Dwarf") {
         this->health -= 5;
     }
 }
@@ -59,10 +61,11 @@ int Vampire::receiveAttack(Character *c) {
 
 //TODO: REGAIN 5HP EVERY TURN, HP CAPPED AT 120HP
 Troll::Troll() {
-    this->race = "Troll";
+    this->setRace("Troll");
     this->health = 120;
     this->atk = 25;
     this->def = 15;
+    this->gold = 0;
     this->maxHealth = 120;
 }
 void Troll::attack(Character *c) {
@@ -90,6 +93,7 @@ Goblin::Goblin() {
     this->health = 110;
     this->atk = 15;
     this->def = 20;
+    this->gold = 0;
     this->maxHealth = 110;
 }
 
@@ -107,7 +111,7 @@ int Goblin::receiveAttack(Character *c) {
         return -1;
     }
     int damage = this->damage(this->def, c->getAtk());
-    damage = (c->race == "Orcs")? damage * 1.5 : damage;
+    damage = (c->getRace() == "Orcs")? damage * 1.5 : damage;
     this->health -= damage;
     this->getSummary();
     if (this->health <= 0){
@@ -118,10 +122,11 @@ int Goblin::receiveAttack(Character *c) {
 }
 
 Shade::Shade() {
-    this->race = "Shade";
+    this->setRace("Shade");
     this->health = 125;
     this->atk = 25;
     this->def = 25;
+    this->gold = 0;
     this->maxHealth = 125;
 }
 

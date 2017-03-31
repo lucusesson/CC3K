@@ -4,11 +4,14 @@
 
 #include <stdio.h>
 #include <iostream>
-#include "grid.h"
-#include "game.h"
+#include "Enemy.h"
+#include "Player.h"
 
 int main(){
-    std::ifstream ifs("cc3kfloor.txt");
-    Game g {};
-    g.startGame(ifs);
+    Character *p = new Shade();
+    Character *h = new Halfling();
+    p->getSummary();
+    p->attack(h);
+    h->attack(p);
+    p->getSummary();
 }
