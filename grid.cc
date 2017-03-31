@@ -129,7 +129,7 @@ void Grid::setGrid() {
 	// set random tile to this pointer
 
 	//set player	
-	Character *c = 
+	//Character *c = 
 	whichChamber = randomNum(0,4);
 	WhereinChamber = randomChamber(WhereinChamber);
 	chamber[whichChamber][WhereinChamber].setCharacter(c);
@@ -139,7 +139,7 @@ void Grid::setGrid() {
 	whichChamber = randomNum(0,4);
 	// check if player is in this chamber
 	WhereinChamber = randomChamber(whichChamber);
-	chamber[whichChamber][WhereinChamber].setSymbol('\\')
+	chamber[whichChamber][WhereinChamber].setSymbol('\\');
 	//potions
 	setPotions();
 

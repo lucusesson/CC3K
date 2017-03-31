@@ -7,6 +7,7 @@
 #include "tile.h"
 #include "window.h"
 #include "Item.h"
+#include "Character.h"
 
 class Grid : public Observer {
 private:
@@ -16,12 +17,12 @@ private:
 	std::vector<std::vector<Tile *>> theChamber;
 	std::vector <Character *> characters;
 	std::vector <Item *> items;
-
 	void initGrid(std::ifstream &i);
 	void setObservers();
 	bool inGrid(int r, int c);
 	void setChamber(Tile * t, int r, int c);
 	int inChamber(int r, int c);
+	void setGrid();
 
 	void displayGrid();	
 
