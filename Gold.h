@@ -8,27 +8,33 @@
 
 
 class smallGold : public Item {
+	void alterPlayer(Character &c) override;
+public:
 	smallGold();
 	~smallGold();
-	void alterPlayer(Character &c) override;
+	
 };
 
 class normalGold : public Item {
+	void alterPlayer(Character &c) override;
+public:
 	normalGold();
 	~normalGold();
-	void alterPlayer(Character &c) override;
 };
 
 class merchantHoard : public Item {
+	void alterPlayer(Character &c) override;
+public:
 	merchantHoard();
 	~merchantHoard();
-	void alterPlayer(Character &c) override;
+	
 };
 
 class dragonHoard : public Item {
+	void alterPlayer(Character &c) override;
+public:
 	dragonHoard();
 	~dragonHoard();
-	void alterPlayer(Character &c) override;
 };
 
 #endif

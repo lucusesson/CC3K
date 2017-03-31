@@ -6,7 +6,7 @@
 #include <string>
 #include "tile.h"
 #include "Item.h"
-#include "Character.h"
+class Character;
 
 class Grid : public Observer {
 private:
@@ -23,6 +23,8 @@ private:
 	void setGrid();
 	int randomChamber(int whichChamber);
 	void setPotions();
+	void setGold();
+	void setEnemies();
 
 	void displayGrid();	
 

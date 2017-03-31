@@ -13,7 +13,7 @@ protected:
 public:
 	virtual ~Item() = default;
 	virtual void alterPlayer(Character &c) = 0;
-	virtual char getSymbol() = 0;
+	char getSymbol();
 	std::string getKind();
 	void setXY(int x, int y);
 };

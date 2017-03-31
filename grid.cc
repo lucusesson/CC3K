@@ -1,5 +1,9 @@
 #include "grid.h"
 #include <random>
+#include "Player.h"
+#include "Enemy.h"
+#include "Gold.h"
+#include "Potion.h"
 
 // helper function for generating a random number between low and high 
 //												(inclusive)
@@ -18,105 +22,104 @@ int Grid::randomChamber(int whichChamber) {
 }
 
 void Grid::setPotions() {
+	int whichPotion, WhereinChamber, whichChamber;
 	Item *p;
 	for(int i = 1; i <= 10; ++i) {
 		while(true) {
 			whichPotion = randomNum(1,6);
 			whichChamber = randomNum(0,4);
 			WhereinChamber = randomChamber(whichChamber);
-			if(chamber[whichChamber][WhereinChamber].isOccupied()) break;
+			if(theChamber[whichChamber][WhereinChamber]->isOccupied()) break;
 		}
-		if(whichPotion = 1) {
+		if(whichPotion == 1) {
 			p = new atkBoost();
-			chamber[whichChamber][WhereinChamber].setItem(p);
+			theChamber[whichChamber][WhereinChamber]->setItem(p);
 		}
-		else if(whichPotion = 2) {
+		else if(whichPotion == 2) {
 			p = new atkWound();
-			chamber[whichChamber][WhereinChamber].setItem(p);
+			theChamber[whichChamber][WhereinChamber]->setItem(p);
 		}
-		else if(whichPotion = 3) {
+		else if(whichPotion == 3) {
 			p = new defBoost();
-			chamber[whichChamber][WhereinChamber].setItem(p);
+			theChamber[whichChamber][WhereinChamber]->setItem(p);
 		}
-		else if(whichPotion = 4) {
+		else if(whichPotion == 4) {
 			p = new defWound();
-			chamber[whichChamber][WhereinChamber].setItem(p);
+			theChamber[whichChamber][WhereinChamber]->setItem(p);
 		}
-		else if(whichPotion = 5) {
+		else if(whichPotion == 5) {
 			p = new healthBoost();
-			chamber[whichChamber][WhereinChamber].setItem(p);
+			theChamber[whichChamber][WhereinChamber]->setItem(p);
 		}
 		else {
 			p = new healthWound();
-			chamber[whichChamber][WhereinChamber].setItem(p);
+			theChamber[whichChamber][WhereinChamber]->setItem(p);
 		}
 	}
 }
 
 void Grid::setGold() {
 	Item *g;
-	int whichGold;
+	int whichGold, whichChamber, WhereinChamber;
 	for(int i = 1; i <= 10; ++i) {
 		while(true) {
-			whichgold = randomNum(1,8);
+			whichGold = randomNum(1,8);
 			whichChamber = randomNum(0,4);
 			WhereinChamber = randomChamber(whichChamber);
-			if(chamber[whichChamber][WhereinChamber].isOccupied()) break;
+			if(theChamber[whichChamber][WhereinChamber]->isOccupied()) break;
 		}
 		if(whichGold <= 5) {
 			g = new normalGold();
-			chamber[whichChamber][WhereinChamber].setItem(g);
+			theChamber[whichChamber][WhereinChamber]->setItem(g);
 		}
 		else if(whichGold > 5 && whichGold <= 6) {
 			g = new dragonHoard();
-			chamber[whichChamber][WhereinChamber].setItem(g);
+			theChamber[whichChamber][WhereinChamber]->setItem(g);
 		}
 		else if(whichGold > 6) {
 			g = new smallGold();
-			chamber[whichChamber][WhereinChamber].setItem(g);
+			theChamber[whichChamber][WhereinChamber]->setItem(g);
 		}
 	}
 }
 
 void Grid::setEnemies() {
 	Character *e;
-	int whichEnemy;
+	int whichEnemy, whichChamber, WhereinChamber;
 	for(int i = 1; i <= 20; ++i) {
 		while(true) {
 			whichEnemy = randomNum(1,18);
 			whichChamber = randomNum(0,4);
 			WhereinChamber = randomChamber(whichChamber);
-			if(chamber[whichChamber][WhereinChamber].isOccupied()) break;
+			if(theChamber[whichChamber][WhereinChamber]->isOccupied()) break;
 		}
 		if(whichEnemy <= 4) {
 			e = new Human();
-			chamber[whichChamber][WhereinChamber].setItem(e);
+			theChamber[whichChamber][WhereinChamber]->setCharacter(e);
 		}
 		else if(whichEnemy > 4 && whichEnemy <= 7) {
 			e = new Dwarf();
-			chamber[whichChamber][WhereinChamber].setItem(e);
+			theChamber[whichChamber][WhereinChamber]->setCharacter(e);
 		}
 		else if(whichEnemy > 7 && whichEnemy <= 12) {
 			e = new Halfling();
-			chamber[whichChamber][WhereinChamber].setItem(e);
+			theChamber[whichChamber][WhereinChamber]->setCharacter(e);
 		}
 		else if(whichEnemy > 12 && whichEnemy <= 14) {
 			e = new Elf();
-			chamber[whichChamber][WhereinChamber].setItem(e);
+			theChamber[whichChamber][WhereinChamber]->setCharacter(e);
 		}
 		else if(whichEnemy > 14 && whichEnemy <= 16) {
 			e = new Orc();
-			chamber[whichChamber][WhereinChamber].setItem(e);
+			theChamber[whichChamber][WhereinChamber]->setCharacter(e);
 		}
 		else {
 			e = new Merchant();
-			chamber[whichChamber][WhereinChamber].setItem(e);
+			theChamber[whichChamber][WhereinChamber]->setCharacter(e);
 		}
 	}
 }
 
-
-Observer::~Observer() {}
 
 void Grid::setGrid() {
 	int whichChamber, WhereinChamber;
@@ -132,14 +135,14 @@ void Grid::setGrid() {
 	//Character *c = 
 	whichChamber = randomNum(0,4);
 	WhereinChamber = randomChamber(WhereinChamber);
-	chamber[whichChamber][WhereinChamber].setCharacter(c);
+	//theChamber[whichChamber][WhereinChamber]->setCharacter(c);
 
 
 	//set stairway
 	whichChamber = randomNum(0,4);
 	// check if player is in this chamber
 	WhereinChamber = randomChamber(whichChamber);
-	chamber[whichChamber][WhereinChamber].setSymbol('\\');
+	theChamber[whichChamber][WhereinChamber]->setSymbol('\\');
 	//potions
 	setPotions();
 
@@ -243,6 +246,7 @@ int Grid::inChamber(int r, int c) {
 			if (theChamber[chamber][cell] == t) return chamber; 
 		}
 	}
+	return -1;
 }
 
 void Grid::setChamber(Tile * t, int r, int c) {

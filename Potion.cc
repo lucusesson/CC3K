@@ -35,3 +35,43 @@ defBoost::~defBoost() {}
 void defBoost::alterPlayer(Character &c) {
 	c.alterHealth(value);
 }
+
+healthWound::healthWound() {
+	this->value = -5;
+	this->whatKind = "healthWound";
+}
+
+healthWound::~healthWound() {}
+
+void healthWound::alterPlayer(Character &c) {
+	c.alterHealth(value);
+}
+
+healthBoost::healthBoost() {
+	this->value = 5;
+	this->whatKind = "healthBoost";
+}
+
+healthBoost::~healthBoost() {}
+
+healthBoost::alterPlayer(Character &c) {
+	c.alterHealth(value);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

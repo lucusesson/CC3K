@@ -10,3 +10,7 @@ void Item::setXY(int x, int y) {
 std::string Item::getKind() {
 	return this->whatKind;
 }
+
+char Item::getSymbol() { return symbol; }
+
+
