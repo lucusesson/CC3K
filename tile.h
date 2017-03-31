@@ -25,7 +25,8 @@ public:
 	void setItem(Item * i);
 	void despawnCharacter();
 	void despawnItem();
-
+	bool isOccupied();
+	void setSymbol(char c);
 	char getSymbol();
 	bool isWalkable();
 	void move(int ns, int ew);

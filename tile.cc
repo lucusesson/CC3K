@@ -4,6 +4,10 @@ Tile::Tile(char symbol, int x, int y, bool walkable): symbol(symbol), x(x), y(y)
 
 Tile::~Tile() {}
 
+void Tile::setSymbol(char c) {
+	symbol = c;
+}
+
 char Tile::getSymbol() { 
 	if (item) 
 		return item->getSymbol();
@@ -11,6 +15,13 @@ char Tile::getSymbol() {
 		return character->getSymbol();
 	else 
 		return symbol;
+}
+
+bool Tile::isOccupied() {
+	if(character == nullptr && item = nullptr) {
+		return true;
+	}
+	else return false;
 }
 
 bool Tile::isWalkable() { return walkable; }

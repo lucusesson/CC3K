@@ -1,6 +1,153 @@
 #include "grid.h"
 
+
+// helper function for generating a random number between low and high 
+//												(inclusive)
+int randomNum(int low, int high) {
+	std::default_random_engine generator;
+	std::uniform_int_distribution<int> distribution(low,high);
+	int rnum = distribution(generator);
+	return rnum;
+}
+
+// picks random spot in chamber
+int randomChamber(int whichChamber) {
+	int chamberSize = theGrid[whichChamber].size();
+	int WhereinChamber = randomNum(0, chamberSize-1);
+	return WhereinChamber;
+}
+
+void Grid::setPotions() {
+	Item *p;
+	for(int i = 1; i <= 10; ++i) {
+		while(true) {
+			whichPotion = randomNum(1,6);
+			whichChamber = randomNum(0,4);
+			WhereinChamber = randomChamber(whichChamber);
+			if(chamber[whichChamber][WhereinChamber].isOccupied()) break;
+		}
+		if(whichPotion = 1) {
+			p = new atkBoost();
+			chamber[whichChamber][WhereinChamber].setItem(p);
+		}
+		else if(whichPotion = 2) {
+			p = new atkWound();
+			chamber[whichChamber][WhereinChamber].setItem(p);
+		}
+		else if(whichPotion = 3) {
+			p = new defBoost();
+			chamber[whichChamber][WhereinChamber].setItem(p);
+		}
+		else if(whichPotion = 4) {
+			p = new defWound();
+			chamber[whichChamber][WhereinChamber].setItem(p);
+		}
+		else if(whichPotion = 5) {
+			p = new healthBoost();
+			chamber[whichChamber][WhereinChamber].setItem(p);
+		}
+		else {
+			p = new healthWound();
+			chamber[whichChamber][WhereinChamber].setItem(p);
+		}
+	}
+}
+
+void Grid::setGold() {
+	Item *g;
+	int whichGold;
+	for(int i = 1; i <= 10; ++i) {
+		while(true) {
+			whichgold = randomNum(1,8);
+			whichChamber = randomNum(0,4);
+			WhereinChamber = randomChamber(whichChamber);
+			if(chamber[whichChamber][WhereinChamber].isOccupied()) break;
+		}
+		if(whichGold <= 5) {
+			g = new normalGold();
+			chamber[whichChamber][WhereinChamber].setItem(g);
+		}
+		else if(whichGold > 5 && whichGold <= 6) {
+			g = new dragonHoard();
+			chamber[whichChamber][WhereinChamber].setItem(g);
+		}
+		else if(whichGold > 6) {
+			g = new smallGold();
+			chamber[whichChamber][WhereinChamber].setItem(g);
+		}
+	}
+}
+
+void Grid::setEnemies() {
+	Character *e;
+	int whichEnemy;
+	for(int i = 1; i <= 20; ++i) {
+		while(true) {
+			whichEnemy = randomNum(1,18);
+			whichChamber = randomNum(0,4);
+			WhereinChamber = randomChamber(whichChamber);
+			if(chamber[whichChamber][WhereinChamber].isOccupied()) break;
+		}
+		if(whichEnemy <= 4) {
+			e = new Human();
+			chamber[whichChamber][WhereinChamber].setItem(e);
+		}
+		else if(whichEnemy > 4 && whichEnemy <= 7) {
+			e = new Dwarf();
+			chamber[whichChamber][WhereinChamber].setItem(e);
+		}
+		else if(whichEnemy > 7 && whichEnemy <= 12) {
+			e = new Halfling();
+			chamber[whichChamber][WhereinChamber].setItem(e);
+		}
+		else if(whichEnemy > 12 && whichEnemy <= 14) {
+			e = new Elf();
+			chamber[whichChamber][WhereinChamber].setItem(e);
+		}
+		else if(whichEnemy > 14 && whichEnemy <= 16) {
+			e = new Orc();
+			chamber[whichChamber][WhereinChamber].setItem(e);
+		}
+		else {
+			e = new Merchant();
+			chamber[whichChamber][WhereinChamber].setItem(e);
+		}
+	}
+}
+
+
 Observer::~Observer() {}
+
+void Grid::setGrid() {
+	int whichChamber, WhereinChamber;
+	//generating which player?
+	// grid have player pointer?
+	// create player in main, 
+	// or create player here, excepting input
+	// from stdin about which player they want
+	// create that character corresponding to input
+	// set random tile to this pointer
+
+	//set player	
+	Character *c = 
+	whichChamber = randomNum(0,4);
+	WhereinChamber = randomChamber(WhereinChamber);
+	chamber[whichChamber][WhereinChamber].setCharacter(c);
+
+
+	//set stairway
+	whichChamber = randomNum(0,4);
+	// check if player is in this chamber
+	WhereinChamber = randomChamber(whichChamber);
+	chamber[whichChamber][WhereinChamber].setSymbol('\\')
+	//potions
+	setPotions();
+
+	// gold
+	setGold();
+	// enemies
+	setEnemies();
+}
 
 Grid::Grid(std::ifstream &i) {
 	initGrid(i);
@@ -123,3 +270,32 @@ void Grid::displayGrid() {
 void Grid::notify(Info &i) {
 	displayGrid();
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
