@@ -8,10 +8,13 @@
 #include "Character.h"
 #include <iostream>
 #include <vector>
+#include "Item.h"
+#include "Potion.h"
 
 class Enemy;
 
 class Player: public Character{
+    std::vector<Item*> potions;
 public:
     Player();
     void addPotion(Item *p) override;

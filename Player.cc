@@ -143,12 +143,12 @@ int Shade::receiveAttack(Character *c) {
 }
 
 void Player::addPotion(Item *p) {
-	//potions->push_back(p);
+	potions.push_back(p);
 }
 
 bool Player::containPotion(Item *p) {
-	//for(auto &x : potions) {
-	//	if(x.whatKind == p->whatKind) return true;
-	//}
+	for(auto &x : potions) {
+		if (x->getKind() == p->getKind()) return true;
+	}
 	return false;
 }

@@ -3,10 +3,12 @@
 //
 
 #include <stdio.h>
-
-#include "grid.h"
+#include "Character.h"
+#include "Player.h"
+#include "Enemy.h"
 
 int main(){
-    ifstream = new ifstream("cc3kfloor.txt");
-    Grid g = new Grid();
+    Character *p = new Drow();
+    Character *e = new Human();
+    p->attack(e);
 }
