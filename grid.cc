@@ -219,8 +219,9 @@ void Grid::setObservers() {
 
 				if (inGrid(i-1,j+1)) 
 					theGrid[i][j]->attach(theGrid[i-1][j+1]);
+
+				setChamber(theGrid[i][j], i, j);
 			}
-			setChamber(theGrid[i][j], i, j);
 		}
 	}
 }
