@@ -5,6 +5,13 @@
 #include "Character.h"
 #include <math.h>
 
+bool Character::isDead() {
+    if (this->health <= 0){
+        return true;
+    }
+    return false;
+}
+
 int Character::miss() {
     srand(time(0));
     int a = rand() % 2;

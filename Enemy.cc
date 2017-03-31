@@ -71,7 +71,7 @@ int Human::receiveAttack(Character *c) {
 Dwarf::Dwarf() {
     this->health = 100;
     this->atk = 20;
-    this->def = 10;
+    this->def = 30;
 }
 
 void Dwarf::attack(Character *c) {

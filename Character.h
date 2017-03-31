@@ -24,6 +24,7 @@ protected:
     void move(int direction);
     void setXY(int x, int y)*/
 public:
+    bool isDead();
     std::string race;
     int miss();
     int getHealth();
