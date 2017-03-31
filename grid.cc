@@ -34,26 +34,32 @@ void Grid::setPotions() {
 		if(whichPotion == 1) {
 			p = new atkBoost();
 			theChamber[whichChamber][WhereinChamber]->setItem(p);
+			items.push_back(p);
 		}
 		else if(whichPotion == 2) {
 			p = new atkWound();
 			theChamber[whichChamber][WhereinChamber]->setItem(p);
+			items.push_back(p);
 		}
 		else if(whichPotion == 3) {
 			p = new defBoost();
 			theChamber[whichChamber][WhereinChamber]->setItem(p);
+			items.push_back(p);
 		}
 		else if(whichPotion == 4) {
 			p = new defWound();
 			theChamber[whichChamber][WhereinChamber]->setItem(p);
+			items.push_back(p);
 		}
 		else if(whichPotion == 5) {
 			p = new healthBoost();
 			theChamber[whichChamber][WhereinChamber]->setItem(p);
+			items.push_back(p);
 		}
 		else {
 			p = new healthWound();
 			theChamber[whichChamber][WhereinChamber]->setItem(p);
+			items.push_back(p);
 		}
 	}
 }
@@ -71,14 +77,17 @@ void Grid::setGold() {
 		if(whichGold <= 5) {
 			g = new normalGold();
 			theChamber[whichChamber][WhereinChamber]->setItem(g);
+			items.push_back(g);
 		}
 		else if(whichGold > 5 && whichGold <= 6) {
 			g = new dragonHoard();
 			theChamber[whichChamber][WhereinChamber]->setItem(g);
+			items.push_back(g);
 		}
 		else if(whichGold > 6) {
 			g = new smallGold();
 			theChamber[whichChamber][WhereinChamber]->setItem(g);
+			items.push_back(g);
 		}
 	}
 }
@@ -96,28 +105,43 @@ void Grid::setEnemies() {
 		if(whichEnemy <= 4) {
 			e = new Human();
 			theChamber[whichChamber][WhereinChamber]->setCharacter(e);
+			characters.push_back(e);
 		}
 		else if(whichEnemy > 4 && whichEnemy <= 7) {
 			e = new Dwarf();
 			theChamber[whichChamber][WhereinChamber]->setCharacter(e);
+			characters.push_back(e);
 		}
 		else if(whichEnemy > 7 && whichEnemy <= 12) {
 			e = new Halfling();
 			theChamber[whichChamber][WhereinChamber]->setCharacter(e);
+			characters.push_back(e);
 		}
 		else if(whichEnemy > 12 && whichEnemy <= 14) {
 			e = new Elf();
 			theChamber[whichChamber][WhereinChamber]->setCharacter(e);
+			characters.push_back(e);
 		}
 		else if(whichEnemy > 14 && whichEnemy <= 16) {
 			e = new Orc();
 			theChamber[whichChamber][WhereinChamber]->setCharacter(e);
+			characters.push_back(e);
 		}
 		else {
 			e = new Merchant();
 			theChamber[whichChamber][WhereinChamber]->setCharacter(e);
+			characters.push_back(e);
 		}
 	}
+}
+
+void Grid::setStairs() {
+	while(true) {
+		whichChamber = randomNum(0,4);
+		WhereinChamber = randomChamber(whichChamber);
+	}
+	theChamber[whichChamber][WhereinChamber]->setSymbol('\\');
+
 }
 
 
@@ -139,10 +163,7 @@ void Grid::setGrid() {
 
 
 	//set stairway
-	whichChamber = randomNum(0,4);
-	// check if player is in this chamber
-	WhereinChamber = randomChamber(whichChamber);
-	theChamber[whichChamber][WhereinChamber]->setSymbol('\\');
+	setStairs();
 	//potions
 	setPotions();
 
@@ -150,6 +171,13 @@ void Grid::setGrid() {
 	setGold();
 	// enemies
 	setEnemies();
+}
+
+void Grid::setPlayer() {
+	cout << endl;
+	cout << "Which Player would you like to be?" << endl;
+	cout << "You can be one:" << endl;
+	cout << ""
 }
 
 Grid::Grid(std::ifstream &i) {
@@ -188,6 +216,7 @@ void Grid::initGrid(std::ifstream &i) {
 	height = theGrid.size();
 	width = theGrid[0].size();
 	setObservers();
+	setPlayer();
 }
 
 bool Grid::inGrid(int r, int c) {

@@ -11,6 +11,7 @@ class Character;
 class Grid : public Observer {
 private:
 	int width,height;
+	Character *Player;
 	std::vector<std::vector<Tile *>> theGrid;
 	std::vector<std::vector<Tile *>> theChamber;
 	std::vector <Character *> characters;
@@ -24,13 +25,13 @@ private:
 	int randomChamber(int whichChamber);
 	void setPotions();
 	void setGold();
-	void setEnemies();
-
-	void displayGrid();	
+	void setEnemies();	
+	void setPlayer();
 
 public:
 	Grid(std::ifstream &i);
 	~Grid();
+	void displayGrid();
 	
 	void notify(Info &i) override;
 	SubscriptionType subType() const override;
