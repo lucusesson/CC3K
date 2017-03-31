@@ -1,5 +1,5 @@
 #include "grid.h"
-
+#include <random>
 
 // helper function for generating a random number between low and high 
 //												(inclusive)
@@ -11,7 +11,7 @@ int randomNum(int low, int high) {
 }
 
 // picks random spot in chamber
-int randomChamber(int whichChamber) {
+int Grid::randomChamber(int whichChamber) {
 	int chamberSize = theGrid[whichChamber].size();
 	int WhereinChamber = randomNum(0, chamberSize-1);
 	return WhereinChamber;

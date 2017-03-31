@@ -5,14 +5,12 @@
 #include <fstream>
 #include <string>
 #include "tile.h"
-#include "window.h"
 #include "Item.h"
 #include "Character.h"
 
 class Grid : public Observer {
 private:
 	int width,height;
-	Xwindow xw {};
 	std::vector<std::vector<Tile *>> theGrid;
 	std::vector<std::vector<Tile *>> theChamber;
 	std::vector <Character *> characters;
@@ -23,6 +21,8 @@ private:
 	void setChamber(Tile * t, int r, int c);
 	int inChamber(int r, int c);
 	void setGrid();
+	int randomChamber(int whichChamber);
+	void setPotions();
 
 	void displayGrid();	
 
