@@ -33,8 +33,11 @@ Vampire::Vampire() {
 
 void Vampire::attack(Character *c) {
     int a = c->receiveAttack(this);
-    if (a == 0 || a == 1){
+    if ((a == 0 || a == 1) && c->race != "Dwarf"){
         this->health += 5;
+    }
+    else if (c->race == "Dward") {
+        this->health -= 5;
     }
 }
 

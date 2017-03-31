@@ -255,16 +255,11 @@ SubscriptionType Grid::subType() const {
 }
 
 void Grid::displayGrid() {
-
-	int spacing = 500 / width; //spacing between cells
-	int border = spacing / 2;
-
-	xw.fillRectangle(0, 0, 500, 500, 0);
-	for (int i = 0; i < width; i++) {
-		for (int j = 0; j < height; j++) {
-			std::string s (1, theGrid[i][j]->getSymbol());
-			xw.drawBigString(i * spacing + border, j * spacing + border, s, 1);
+	for (int i = 0; i < height; i++) {
+		for (int j = 0; j < width; j++) {
+			std::cout << theGrid[i][j]->getSymbol();
 		}
+		std::cout << std::endl;
 	}
 }
 
