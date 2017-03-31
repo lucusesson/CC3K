@@ -12,6 +12,7 @@ Drow::Drow() {
     this->health = 150;
     this->atk = 25;
     this->def = 15;
+    this->gold = 0;
 }
 
 void Drow::attack(Character *c) {
@@ -28,6 +29,7 @@ Vampire::Vampire() {
     this->health = 50;
     this->atk = 25;
     this->def = 25;
+    this->gold = 0;
     this->maxHealth = 50;
 }
 
@@ -63,6 +65,7 @@ Troll::Troll() {
     this->health = 120;
     this->atk = 25;
     this->def = 15;
+    this->gold = 0;
     this->maxHealth = 120;
 }
 void Troll::attack(Character *c) {
@@ -90,6 +93,7 @@ Goblin::Goblin() {
     this->health = 110;
     this->atk = 15;
     this->def = 20;
+    this->gold = 0;
     this->maxHealth = 110;
 }
 
@@ -122,6 +126,7 @@ Shade::Shade() {
     this->health = 125;
     this->atk = 25;
     this->def = 25;
+    this->gold = 0;
     this->maxHealth = 125;
 }
 
