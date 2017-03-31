@@ -17,7 +17,12 @@ void Character::setXY(int x, int y) {
 }
 
 void Character::alterHealth(int a) {
-    this->health += a;
+    if (this->health + a >= this->maxHealth){
+        this->health = this->maxHealth;
+    }
+    else {
+        this->health += a;
+    }
 }
 
 void Character::alterGold(int a) {
