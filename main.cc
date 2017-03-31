@@ -3,12 +3,12 @@
 //
 
 #include <stdio.h>
-#include "Character.h"
-#include "Player.h"
-#include "Enemy.h"
+#include <iostream>
+#include "grid.h"
+#include "game.h"
 
 int main(){
-    Character *p = new Drow();
-    Character *e = new Human();
-    p->attack(e);
+    std::ifstream ifs("cc3kfloor.txt");
+    Game g {};
+    g.startGame(ifs);
 }
