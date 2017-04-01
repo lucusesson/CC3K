@@ -225,11 +225,30 @@ void Grid::enemyMove(bool b) {
 
 }
 
+
+bool Grid::playerMove(ns, ew) {
+	if (!theGrid[Player->getX()+ew][Player->getY()+ns]->isOccupied() && theGrid[Player->getX()+ew][Player->getY()+ns]->isWalkable()) {
+		theGrid[Player->getX()][Player->getY()]->move(ns,ew);
+		return true;
+	} else {
+		return false;
+	}
+}
+
 //Lucus End
 
 
 
 
+void Grid::playerAttack(ns, ew) {
+	for (auto &c : characters) {
+		if (Player->getX() + ew == c.getX() && Player.getY() + ns == c.getY()) {
+			if (Player->attack(c) == 0) {
+				theGrid[c.getX()][c.getY()]->despawnCharacter();
+			} 
+		}
+	}
+}
 
 Grid::Grid(std::ifstream &i) {
 	initGrid(i);
