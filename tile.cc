@@ -2,8 +2,6 @@
 
 Tile::Tile(char symbol, int x, int y, bool walkable): symbol(symbol), x(x), y(y), walkable(walkable) {}
 
-Tile::~Tile() {}
-
 void Tile::setSymbol(char c) {
 	symbol = c;
 }

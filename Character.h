@@ -10,6 +10,10 @@
 #include <iostream>
 class Item;
 
+
+/*
+ *
+ */
 class Character {
 protected:
     std::string race;
@@ -26,6 +30,8 @@ public:
     int getAtk();
     int getDef();
     int getGold();
+    int getX();
+    int getY();
     char getSymbol();
     void alterHealth(int a);
     void alterGold(int a);

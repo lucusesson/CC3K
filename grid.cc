@@ -14,7 +14,9 @@ int randomNum(int low, int high) {
 	return rnum;
 }
 
-// picks random spot in chamber
+/*
+ *
+ */
 int Grid::randomChamber(int whichChamber) {
 	int chamberSize = theGrid[whichChamber].size();
 	int WhereinChamber = randomNum(0, chamberSize-1);
@@ -172,8 +174,6 @@ Grid::Grid(std::ifstream &i) {
 	initGrid(i);
 }
 
-Grid::~Grid() {}
-
 void Grid::initGrid(std::ifstream &i) {
 	char tile;
 	int x = 0;
@@ -289,13 +289,16 @@ void Grid::notify(Info &i) {
 }
 
 Grid::~Grid() {
-	for (int i = 0; i < theGrid.length(); i++){
-		delete theGrid[i];
+	for (int i = 0; i < theGrid.size(); i++){
+        for (int j = 0; j < theGrid[0].size();j++){
+            delete theGrid[i][j];
+        }
+
 	}
-	for (int i = 0; i < characters.length(); i++){
+	for (int i = 0; i < characters.size(); i++){
 		delete characters[i];
 	}
-	for (int i = 0; i < items.length(); i++){
+	for (int i = 0; i < items.size(); i++){
 		delete items[i];
 	}
 }

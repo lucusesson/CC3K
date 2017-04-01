@@ -15,6 +15,13 @@ void Character::setSymbol(char sym) {
     this->symbol = sym;
 }
 
+int Character::getX() {
+    return this->x;
+}
+
+int Character::getY() {
+    return this->y;
+}
 
 void Character::setRace(std::string race) {
     this->race = race;
