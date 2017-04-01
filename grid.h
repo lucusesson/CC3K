@@ -27,8 +27,8 @@ private:
 	void setPotions();
 	void setGold();
 	void setEnemies();	
-	void setPlayer();
-
+	void setStairs();
+	void moveEnemies();
 public:
 	Grid(std::ifstream &i);
 	~Grid();

@@ -136,6 +136,7 @@ void Grid::setEnemies() {
 }
 
 void Grid::setStairs() {
+	int whichChamber, WhereinChamber;
 	while(true) {
 		whichChamber = randomNum(0,4);
 		WhereinChamber = randomChamber(whichChamber);
@@ -146,39 +147,26 @@ void Grid::setStairs() {
 
 
 void Grid::setGrid() {
-	int whichChamber, WhereinChamber;
-	//generating which player?
-	// grid have player pointer?
-	// create player in main, 
-	// or create player here, excepting input
-	// from stdin about which player they want
-	// create that character corresponding to input
-	// set random tile to this pointer
-
-	//set player	
-	//Character *c = 
-	whichChamber = randomNum(0,4);
-	WhereinChamber = randomChamber(WhereinChamber);
-	//theChamber[whichChamber][WhereinChamber]->setCharacter(c);
-
-
 	//set stairway
 	setStairs();
 	//potions
 	setPotions();
-
 	// gold
 	setGold();
 	// enemies
 	setEnemies();
 }
 
-void Grid::setPlayer() {
-	cout << endl;
-	cout << "Which Player would you like to be?" << endl;
-	cout << "You can be one:" << endl;
-	cout << ""
+void Grid::moveEnemies() {
+	int ns, ew;
+	
+	for(auto &c : characters) {
+		
+	}
+
 }
+
+
 
 Grid::Grid(std::ifstream &i) {
 	initGrid(i);
@@ -216,7 +204,7 @@ void Grid::initGrid(std::ifstream &i) {
 	height = theGrid.size();
 	width = theGrid[0].size();
 	setObservers();
-	setPlayer();
+	setGrid();
 }
 
 bool Grid::inGrid(int r, int c) {
@@ -311,3 +299,4 @@ Grid::~Grid() {
 		delete items[i];
 	}
 }
+
