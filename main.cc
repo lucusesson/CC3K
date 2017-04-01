@@ -6,18 +6,19 @@
 #include <iostream>
 #include "Enemy.h"
 #include "Player.h"
+#include "game.h"
 
 int main(){
 	Game g;
-    ifstream ifs ("cc3kfloor.txt");
-    g.startGame(ifs)
+    std::ifstream ifs ("cc3kfloor.txt");
+    g.startGame(ifs);
     
     while(true) {
-    	string s;
+    	std::string s;
     	std::cout << "Restart Game? (Y/y)" << std::endl;
     	std::cin >> s;
     	if (s == "Y" || s == "y") {
-    		g.startGame(ifs)
+    		g.startGame(ifs);
     	} else {
     		break;
     	}

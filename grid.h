@@ -28,8 +28,7 @@ private:
 	void setEnemies();	
 	void setStairs();
 	void moveEnemies();
-	void test();
-	void test1();
+	void spawnGold(Character& c);
 public:
 	Grid(std::ifstream &i);
 	~Grid();
