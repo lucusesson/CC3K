@@ -37,9 +37,11 @@ public:
 	
 	//start Michael
 	Character * Player;
-	bool playerMove(ns, ew);
-	void playerAttack(ns, ew);
-	void playerUsePotion(ns, ew);
+	void enemyMove(bool b);
+	bool enemyAttack(Character &c);
+	bool playerMove(int ns, int ew);
+	void playerAttack(int ns, int ew);
+	void playerUsePotion(int ns, int ew);
 	//end Michael
 
 	void notify(Info &i) override;

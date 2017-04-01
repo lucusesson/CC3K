@@ -35,37 +35,37 @@ void Grid::setPotions() {
 		}
 		if(whichPotion == 1) {
 			p = new atkBoost();
-			p.setXY(whichChamber,WhereinChamber);
+			p->setXY(whichChamber,WhereinChamber);
 			theChamber[whichChamber][WhereinChamber]->setItem(p);
 			items.push_back(p);
 		}
 		else if(whichPotion == 2) {
 			p = new atkWound();
-			p.setXY(whichChamber,WhereinChamber);
+			p->setXY(whichChamber,WhereinChamber);
 			theChamber[whichChamber][WhereinChamber]->setItem(p);
 			items.push_back(p);
 		}
 		else if(whichPotion == 3) {
 			p = new defBoost();
-			p.setXY(whichChamber,WhereinChamber);
+			p->setXY(whichChamber,WhereinChamber);
 			theChamber[whichChamber][WhereinChamber]->setItem(p);
 			items.push_back(p);
 		}
 		else if(whichPotion == 4) {
 			p = new defWound();
-			p.setXY(whichChamber,WhereinChamber);
+			p->setXY(whichChamber,WhereinChamber);
 			theChamber[whichChamber][WhereinChamber]->setItem(p);
 			items.push_back(p);
 		}
 		else if(whichPotion == 5) {
 			p = new healthBoost();
-			p.setXY(whichChamber,WhereinChamber);
+			p->setXY(whichChamber,WhereinChamber);
 			theChamber[whichChamber][WhereinChamber]->setItem(p);
 			items.push_back(p);
 		}
 		else {
 			p = new healthWound();
-			p.setXY(whichChamber,WhereinChamber);
+			p->setXY(whichChamber,WhereinChamber);
 			theChamber[whichChamber][WhereinChamber]->setItem(p);
 			items.push_back(p);
 		}
@@ -84,19 +84,19 @@ void Grid::setGold() {
 		}
 		if(whichGold <= 5) {
 			g = new normalGold();
-			g.setXY(whichChamber,WhereinChamber);
+			g->setXY(whichChamber,WhereinChamber);
 			theChamber[whichChamber][WhereinChamber]->setItem(g);
 			items.push_back(g);
 		}
 		else if(whichGold > 5 && whichGold <= 6) {
 			g = new dragonHoard();
-			g.setXY(whichChamber,WhereinChamber);
+			g->setXY(whichChamber,WhereinChamber);
 			theChamber[whichChamber][WhereinChamber]->setItem(g);
 			items.push_back(g);
 		}
 		else if(whichGold > 6) {
 			g = new smallGold();
-			g.setXY(whichChamber,WhereinChamber);
+			g->setXY(whichChamber,WhereinChamber);
 			theChamber[whichChamber][WhereinChamber]->setItem(g);
 			items.push_back(g);
 		}
@@ -115,37 +115,37 @@ void Grid::setEnemies() {
 		}
 		if(whichEnemy <= 4) {
 			e = new Human();
-			e.setXY(whichChamber,WhereinChamber);
+			e->setXY(whichChamber,WhereinChamber);
 			theChamber[whichChamber][WhereinChamber]->setCharacter(e);
 			characters.push_back(e);
 		}
 		else if(whichEnemy > 4 && whichEnemy <= 7) {
 			e = new Dwarf();
-			e.setXY(whichChamber,WhereinChamber);
+			e->setXY(whichChamber,WhereinChamber);
 			theChamber[whichChamber][WhereinChamber]->setCharacter(e);
 			characters.push_back(e);
 		}
 		else if(whichEnemy > 7 && whichEnemy <= 12) {
 			e = new Halfling();
-			e.setXY(whichChamber,WhereinChamber);
+			e->setXY(whichChamber,WhereinChamber);
 			theChamber[whichChamber][WhereinChamber]->setCharacter(e);
 			characters.push_back(e);
 		}
 		else if(whichEnemy > 12 && whichEnemy <= 14) {
 			e = new Elf();
-			e.setXY(whichChamber,WhereinChamber);
+			e->setXY(whichChamber,WhereinChamber);
 			theChamber[whichChamber][WhereinChamber]->setCharacter(e);
 			characters.push_back(e);
 		}
 		else if(whichEnemy > 14 && whichEnemy <= 16) {
 			e = new Orc();
-			e.setXY(whichChamber,WhereinChamber);
+			e->setXY(whichChamber,WhereinChamber);
 			theChamber[whichChamber][WhereinChamber]->setCharacter(e);
 			characters.push_back(e);
 		}
 		else {
 			e = new Merchant();
-			e.setXY(whichChamber,WhereinChamber);
+			e->setXY(whichChamber,WhereinChamber);
 			theChamber[whichChamber][WhereinChamber]->setCharacter(e);
 			characters.push_back(e);
 		}
@@ -186,7 +186,7 @@ bool Grid::enemyAttack(Character &c) {
 		status = c.attack(Player);
 		if(status == 0) {
 			spawnGold(c); 
-			theGrid[cx][cy].despawnCharacter();
+			theGrid[cx][cy]->despawnCharacter();
 		}
 		return true;
 	}
@@ -205,13 +205,13 @@ void Grid::enemyMove(bool b) {
 				while(true) {
 					ns = randomNum(-1, 1);
 					ew = randomNum(-1, 1);
-					x = c.getX();
-					y = c.getY();
-					if(!(theGrid[x+ns][y+ew].isOccupied()) 
-						&& theGrid[x+ns][y+ew].isWalkable()) break;
+					x = c->getX();
+					y = c->getY();
+					if(!(theGrid[x+ns][y+ew]->isOccupied()) 
+						&& theGrid[x+ns][y+ew]->isWalkable()) break;
 				}
 				// now need to move tile that has corresponding enemy pointer
-				theGrid[x][y].move(ns, ew);
+				theGrid[x][y]->move(ns, ew);
 
 			}
 		}
@@ -219,14 +219,14 @@ void Grid::enemyMove(bool b) {
 		// false means just attack
 	else {
 		for(auto &c : characters) {
-			EnemyAttack(c);
+			enemyAttack(c);
 		}
 	}
 
 }
 
 
-bool Grid::playerMove(ns, ew) {
+bool Grid::playerMove(int ns, int ew) {
 	if (!theGrid[Player->getX()+ew][Player->getY()+ns]->isOccupied() && theGrid[Player->getX()+ew][Player->getY()+ns]->isWalkable()) {
 		theGrid[Player->getX()][Player->getY()]->move(ns,ew);
 		return true;
@@ -240,9 +240,9 @@ bool Grid::playerMove(ns, ew) {
 
 
 
-void Grid::playerAttack(ns, ew) {
+void Grid::playerAttack(int ns, int ew) {
 	for (auto &c : characters) {
-		if (Player->getX() + ew == c.getX() && Player.getY() + ns == c.getY()) {
+		if (Player->getX() + ew == c.getX() && Player->getY() + ns == c.getY()) {
 			if (Player->attack(c) == 0) {
 				theGrid[c.getX()][c.getY()]->despawnCharacter();
 			} 
