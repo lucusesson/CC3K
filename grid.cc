@@ -226,34 +226,7 @@ void Grid::enemyMove(bool b) {
 
 //Lucus End
 
-bool Grid::attack() {
 
-}
-
-void Grid::moveEnemies(bool b) {
-	// true move and attack
-	if(b) {
-		int ns, ew, x, y;
-		for(auto &c : characters) {
-			if(attack(c)) {
-
-			}
-			else {
-				while(true) {
-					ns = randomNum(-1, 1);
-					ew = randomNum(-1, 1);
-					x = c.getX();
-					y = c.getY();
-					if(!theGrid[x+ns][y+ew].isOccupied()) break;
-				}
-				// now need to move tile that has corresponding enemy pointer
-
-			}
-		}
-	}
-		// false means just attack
-
-}
 
 
 
