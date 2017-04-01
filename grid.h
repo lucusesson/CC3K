@@ -16,6 +16,7 @@ private:
 	std::vector<std::vector<Tile *>> theChamber;
 	std::vector <Character *> characters;
 	std::vector <Item *> items;
+	
 	void initGrid(std::ifstream &i);
 	void setObservers();
 	bool inGrid(int r, int c);
@@ -26,7 +27,6 @@ private:
 	void setPotions();
 	void setGold();
 	void setEnemies();	
-	void setPlayer();
 
 public:
 	Grid(std::ifstream &i);
