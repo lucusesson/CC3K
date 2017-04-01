@@ -24,35 +24,35 @@ public:
 class Drow: public Player{
 public:
     Drow();
-    void attack(Character* c);
+    int attack(Character* c);
     int receiveAttack(Character* c);
 };
 
 class Vampire: public Player{
 public:
     Vampire();
-    void attack(Character* c);
+    int attack(Character* c);
     int receiveAttack(Character* c);
 };
 
 class Troll: public Player{
 public:
     Troll();
-    void attack(Character* c);
+    int attack(Character* c);
     int receiveAttack(Character* c);
 };
 
 class Shade: public Player{
 public:
     Shade();
-    void attack(Character* c);
+    int attack(Character* c);
     int receiveAttack(Character* c);
 };
 
 class Goblin: public Player{
 public:
     Goblin();
-    void attack(Character* c);
+    int attack(Character* c);
     int receiveAttack(Character* c);
 };
 
