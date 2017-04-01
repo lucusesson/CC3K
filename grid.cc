@@ -300,31 +300,14 @@ void Grid::notify(Info &i) {
 	displayGrid();
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Grid::~Grid() {
+	for (int i = 0; i < theGrid.length(); i++){
+		delete theGrid[i];
+	}
+	for (int i = 0; i < characters.length(); i++){
+		delete characters[i];
+	}
+	for (int i = 0; i < items.length(); i++){
+		delete items[i];
+	}
+}

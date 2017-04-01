@@ -67,3 +67,8 @@ void Tile::notify(Info &i) {
 SubscriptionType Tile::subType() const {
 	return SubscriptionType::SwitchOnly;
 }
+
+Tile::~Tile() {
+	delete character;
+	delete item;
+}

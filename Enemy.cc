@@ -45,6 +45,8 @@ int Halfling::receiveAttack(Character *c) {
     this->getSummary();
     if (this->health <= 0){
         std:: cout << 'Dead';
+        int gold = this->miss();
+        this->alterGold(gold+1);
         return 0;
     }
     return 1;
@@ -89,6 +91,8 @@ int Dwarf::receiveAttack(Character *c) {
     this->getSummary();
     if (this->health <= 0){
         std:: cout << 'Dead';
+        int gold = this->miss();
+        this->alterGold(gold+1);
         return 0;
     }
     return 1;
@@ -116,6 +120,8 @@ int Elf::receiveAttack(Character *c) {
     this->getSummary();
     if (this->health <= 0){
         std:: cout << 'Dead';
+        int gold = this->miss();
+        this->alterGold(gold+1);
         return 0;
     }
     return 1;
@@ -140,6 +146,8 @@ int Orc::receiveAttack(Character *c) {
     this->getSummary();
     if (this->health <= 0){
         std:: cout << 'Dead';
+        int gold = this->miss();
+        this->alterGold(gold+1);
         return 0;
     }
     return 1;
