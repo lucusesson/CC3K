@@ -11,7 +11,6 @@ class Character;
 class Grid : public Observer {
 private:
 	int width,height;
-	Character *Player;
 	std::vector<std::vector<Tile *>> theGrid;
 	std::vector<std::vector<Tile *>> theChamber;
 	std::vector <Character *> characters;
@@ -29,11 +28,19 @@ private:
 	void setEnemies();	
 	void setStairs();
 	void moveEnemies();
+
 public:
 	Grid(std::ifstream &i);
 	~Grid();
 	void displayGrid();
 	
+	//start Michael
+	Character * Player;
+	bool playerMove(ns, ew);
+	void playerAttack(ns, ew);
+	void playerUsePotion(ns, ew);
+	//end Michael
+
 	void notify(Info &i) override;
 	SubscriptionType subType() const override;
 
