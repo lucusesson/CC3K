@@ -5,34 +5,47 @@
 #include "Gold.h"
 #include "Potion.h"
 
+using namespace std;
+
 // helper function for generating a random number between low and high 
 //												(inclusive)
 int randomNum(int low, int high) {
-	std::default_random_engine generator;
+	/*std::default_random_engine generator;
 	std::uniform_int_distribution<int> distribution(low,high);
 	int rnum = distribution(generator);
-	return rnum;
+	return rnum;*/
+    int a = rand() % (high - low);
+    a = a + low;
+	if (a > high){
+		a = high;
+	}
+    return a;
 }
+
+
 
 /*
  *
  */
 int Grid::randomChamber(int whichChamber) {
-	int chamberSize = theGrid[whichChamber].size();
+	int chamberSize = theChamber[whichChamber].size();
 	int WhereinChamber = randomNum(0, chamberSize-1);
 	return WhereinChamber;
 }
 
 void Grid::setPotions() {
 	int whichPotion, WhereinChamber, whichChamber;
-	Item *p;
+	Item *p = nullptr;
 	for(int i = 1; i <= 10; ++i) {
+		cout << i << endl;
 		while(true) {
 			whichPotion = randomNum(1,6);
 			whichChamber = randomNum(0,4);
+            //cout << whichPotion << " " << whichChamber << endl;
 			WhereinChamber = randomChamber(whichChamber);
-			if(theChamber[whichChamber][WhereinChamber]->isOccupied()) break;
+			if(!theChamber[whichChamber][WhereinChamber]->isOccupied()) break;
 		}
+        cout << "test3" << "Potion:"<< whichPotion << endl;
 		if(whichPotion == 1) {
 			p = new atkBoost();
 			p->setXY(whichChamber,WhereinChamber);
@@ -69,6 +82,8 @@ void Grid::setPotions() {
 			theChamber[whichChamber][WhereinChamber]->setItem(p);
 			items.push_back(p);
 		}
+		cout << "Access Chamber:" << whichChamber << "Spot:" << WhereinChamber << endl;
+		p = nullptr;
 	}
 }
 
@@ -100,6 +115,7 @@ void Grid::setGold() {
 			theChamber[whichChamber][WhereinChamber]->setItem(g);
 			items.push_back(g);
 		}
+		cout << "Access Chamber:" << whichChamber << "Spot:" << WhereinChamber << endl;
 	}
 }
 
@@ -154,36 +170,38 @@ void Grid::setEnemies() {
 
 void Grid::setStairs() {
 	int whichChamber, WhereinChamber;
-	while(true) {
-		whichChamber = randomNum(0,4);
-		WhereinChamber = randomChamber(whichChamber);
-	}
+    whichChamber = randomNum(0,4);
+    WhereinChamber = randomChamber(whichChamber);
+	cout << "Access Chamber:" << whichChamber << "Spot:" << WhereinChamber << endl;
 	theChamber[whichChamber][WhereinChamber]->setSymbol('\\');
-
 }
 
 
 void Grid::setGrid() {
 	//set stairway
 	setStairs();
+    cout << "stairs" << endl;
 	//potions
 	setPotions();
+    cout << "potions" << endl;
 	// gold
 	setGold();
+    cout << "gold" << endl;
 	// enemies
 	setEnemies();
+    cout << "enemies" << endl;
 }
 
 //Lucus Start 
 
 bool Grid::enemyAttack(Character &c) {
 	int status;
-	int px = Player->getX();
-	int py = Player->getY();
+	int px = player->getX();
+	int py = player->getY();
 	int cx = c.getX();
 	int cy = c.getY();
 	if(px - cx <= 1 && px - cx >= 1 && py - cy <=1 && py - cy >= 1) {
-		status = c.attack(Player);
+		status = c.attack(player);
 		if(status == 0) {
 			spawnGold(c); 
 			theGrid[cx][cy]->despawnCharacter();
@@ -198,7 +216,7 @@ void Grid::enemyMove(bool b) {
 	if(b) {
 		int ns, ew, x, y;
 		for(auto &c : characters) {
-			if(enemyAttack(c)) {
+			if(enemyAttack(*c)) {
 
 			}
 			else {
@@ -219,7 +237,7 @@ void Grid::enemyMove(bool b) {
 		// false means just attack
 	else {
 		for(auto &c : characters) {
-			enemyAttack(c);
+			enemyAttack(*c);
 		}
 	}
 
@@ -227,8 +245,8 @@ void Grid::enemyMove(bool b) {
 
 
 bool Grid::playerMove(int ns, int ew) {
-	if (!theGrid[Player->getX()+ew][Player->getY()+ns]->isOccupied() && theGrid[Player->getX()+ew][Player->getY()+ns]->isWalkable()) {
-		theGrid[Player->getX()][Player->getY()]->move(ns,ew);
+	if (!theGrid[player->getX()+ew][player->getY()+ns]->isOccupied() && theGrid[player->getX()+ew][player->getY()+ns]->isWalkable()) {
+		theGrid[player->getX()][player->getY()]->move(ns,ew);
 		return true;
 	} else {
 		return false;
@@ -237,21 +255,24 @@ bool Grid::playerMove(int ns, int ew) {
 
 //Lucus End
 
-
+void Grid::playerUsePotion(int ns, int ew) {
+// TODO BITCH
+}
 
 
 void Grid::playerAttack(int ns, int ew) {
 	for (auto &c : characters) {
-		if (Player->getX() + ew == c.getX() && Player->getY() + ns == c.getY()) {
-			if (Player->attack(c) == 0) {
-				theGrid[c.getX()][c.getY()]->despawnCharacter();
+		if (player->getX() + ew == c->getX() && player->getY() + ns == c->getY()) {
+			if (player->attack(c) == 0) {
+				theGrid[c->getX()][c->getY()]->despawnCharacter();
 			} 
 		}
 	}
 }
 
-Grid::Grid(std::ifstream &i) {
+Grid::Grid(std::ifstream &i, Player* p) {
 	initGrid(i);
+    player = p;
 }
 
 void Grid::initGrid(std::ifstream &i) {
@@ -284,6 +305,7 @@ void Grid::initGrid(std::ifstream &i) {
 	height = theGrid.size();
 	width = theGrid[0].size();
 	setObservers();
+    cout << "test1" << endl;
 	setGrid();
 }
 

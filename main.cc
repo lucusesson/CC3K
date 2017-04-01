@@ -8,7 +8,9 @@
 #include "Player.h"
 #include "game.h"
 
+
 int main(){
+    srand(time(0));
 	Game g;
     std::ifstream ifs ("cc3kfloor.txt");
     g.startGame(ifs);

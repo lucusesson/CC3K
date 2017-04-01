@@ -1,9 +1,11 @@
 #include "game.h"
 #include <string>
 #include "Character.h"
-#include "Player.h" 
+#include "Player.h"
 
-Character * setPlayer() {
+using namespace std;
+
+Player* setPlayer() {
 	char s;
 	std::cout << "Enter a race: ";
 	std::cin >> s;
@@ -25,22 +27,23 @@ Character * setPlayer() {
 Game::Game() { g = nullptr; }
 
 void Game::startGame(std::ifstream &ifs) {
-	Character * player = setPlayer();
+	Player* player = setPlayer();
 	if (player == nullptr) return;
 
 	g = new Grid(ifs, player);
+	cout << "test2" << endl;
 	std::string input;
 	bool enemyMove = true;
-	std::cin >> input;
+
 
 	do {
 		g->displayGrid();
-		std::cout << "Race: " << g->Player->getRace() << " Gold: " << g->Player->getGold() << std::endl;
-		std::cout << "HP: " << g->Player->getHealth() << std::endl;
-		std::cout << "Atk: " << g->Player->getAtk() << std::endl;
-		std::cout << "Def: " << g->Player->getDef() << std::endl;
+		std::cout << "Race: " << g->player->getRace() << " Gold: " << g->player->getGold() << std::endl;
+		std::cout << "HP: " << g->player->getHealth() << std::endl;
+		std::cout << "Atk: " << g->player->getAtk() << std::endl;
+		std::cout << "Def: " << g->player->getDef() << std::endl;
 		std::cout << "Action: " << std::endl;
-
+		std::cin >> input;
 		if (input == "q") {
 			std::cout << "You have been defeated" << std::endl;
 			break;
@@ -78,6 +81,6 @@ void Game::startGame(std::ifstream &ifs) {
 
 		g->enemyMove(enemyMove);
 
-	} while (g->Player->getHealth() > 0 && std::cin >> input);
+	} while (g->player->getHealth() > 0 && std::cin >> input);
 	delete g;
 }

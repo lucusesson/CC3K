@@ -2,6 +2,7 @@
 using namespace std;
 
 smallGold::smallGold() {
+	this->symbol = 'G';
 	this->value = 1;
 	this->whatKind = "small";
 }
@@ -13,6 +14,7 @@ void smallGold::alterPlayer(Character &c) {
 }
 
 normalGold::normalGold() {
+	this->symbol = 'G';
  	this->value = 2;
  	this->whatKind = "normal";
 }
@@ -24,6 +26,7 @@ void normalGold::alterPlayer(Character &c) {
 }
 
 merchantHoard::merchantHoard() {
+	this->symbol = 'G';
 	this->value = 4;
 	whatKind = "merchantHoard";
 }
@@ -35,6 +38,7 @@ void merchantHoard::alterPlayer(Character &c) {
 }
 
 dragonHoard::dragonHoard() {
+	this->symbol = 'G';
 	value = 6;
 	whatKind = "dragonHoard";
 }

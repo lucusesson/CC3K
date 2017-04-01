@@ -1,6 +1,9 @@
 #include "tile.h"
 
-Tile::Tile(char symbol, int x, int y, bool walkable): symbol(symbol), x(x), y(y), walkable(walkable) {}
+Tile::Tile(char symbol, int x, int y, bool walkable): symbol(symbol), x(x), y(y), walkable(walkable) {
+	this->character = nullptr;
+	this->item=nullptr;
+}
 
 void Tile::setSymbol(char c) {
 	symbol = c;
@@ -17,9 +20,9 @@ char Tile::getSymbol() {
 
 bool Tile::isOccupied() {
 	if(character == nullptr && item == nullptr) {
-		return true;
+		return false;
 	}
-	else return false;
+	else return true;
 }
 
 bool Tile::isWalkable() { return walkable; }
@@ -30,23 +33,23 @@ bool Tile::isWalkable() { return walkable; }
 void Tile::setCharacter(Character * c) {
 	character = c;
 	c->setXY(x,y);
-	notifyObservers(SubscriptionType::All);
+
 }
 
 void Tile::setItem(Item * i) {
 	item = i;
 	i->setXY(x,y);
-	notifyObservers(SubscriptionType::All);
+
 }
 
 void Tile::despawnCharacter() {
 	character = nullptr;
-	notifyObservers(SubscriptionType::All);
+
 }
 
 void Tile::despawnItem() {
 	item = nullptr;
-	notifyObservers(SubscriptionType::All);
+
 }
 
 void Tile::move(int ns, int ew) {

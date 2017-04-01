@@ -3,6 +3,7 @@
 using namespace std;
 
 atkBoost::atkBoost() {
+    this->symbol = 'P';
 	this->value = 5;
 	this->whatKind = "atkBoost";
 }
@@ -15,6 +16,7 @@ void atkBoost::alterPlayer(Character &c) {
 
 
 atkWound::atkWound() {
+    this->symbol = 'P';
 	this->value = -5;
 	this->whatKind = "atkWound";
 }
@@ -26,6 +28,7 @@ void atkWound::alterPlayer(Character &c) {
 }
 
 defBoost::defBoost() {
+    this->symbol = 'P';
 	this->value = 5;
 	this->whatKind = "defBoost";
 }
@@ -36,7 +39,22 @@ void defBoost::alterPlayer(Character &c) {
 	c.alterHealth(value);
 }
 
+defWound::defWound() {
+    this->symbol = 'P';
+	this->value = -5;
+	this->whatKind = "defWound";
+}
+
+void defWound::alterPlayer(Character &c) {
+	c.alterHealth(value);
+}
+
+
+defWound::~defWound() {
+
+}
 healthWound::healthWound() {
+    this->symbol = 'P';
 	this->value = -5;
 	this->whatKind = "healthWound";
 }
@@ -48,6 +66,7 @@ void healthWound::alterPlayer(Character &c) {
 }
 
 healthBoost::healthBoost() {
+    this->symbol = 'P';
 	this->value = 5;
 	this->whatKind = "healthBoost";
 }

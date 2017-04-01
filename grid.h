@@ -6,7 +6,7 @@
 #include <string>
 #include "tile.h"
 #include "Item.h"
-class Character;
+#include "Player.h"
 
 class Grid : public Observer {
 private:
@@ -30,12 +30,12 @@ private:
 	void moveEnemies();
 	void spawnGold(Character& c);
 public:
-	Grid(std::ifstream &i);
+	Player* player;
+	Grid(std::ifstream &i, Player* p);
 	~Grid();
 	void displayGrid();
 	
 	//start Michael
-	Character * Player;
 	void enemyMove(bool b);
 	bool enemyAttack(Character &c);
 	bool playerMove(int ns, int ew);
