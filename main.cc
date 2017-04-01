@@ -8,10 +8,8 @@
 #include "Player.h"
 
 int main(){
-    Character *p = new Shade();
-    Character *h = new Halfling();
-    p->getSummary();
-    p->attack(h);
-    h->attack(p);
-    p->getSummary();
+	Game g;
+    ifstream ifs ("cc3kfloor.txt");
+
+    while()
 }

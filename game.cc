@@ -29,8 +29,8 @@ void Game::startGame(std::ifstream &ifs) {
 
 	g = new Grid(ifs, player);
 	std::string input;
-	
-
+	bool enemyFrozen = false;
+	std::cin >> input;
 
 	do {
 		g->displayGrid();
@@ -42,10 +42,42 @@ void Game::startGame(std::ifstream &ifs) {
 
 		if (input == "q") {
 			std::cout << "You have been defeated" << std::endl;
-			return;
+			break;
+		} else if (input == "r") {
+			break;
+		} else if (input == "f") {
+			if (enemyFrozen) enemyFrozen = false;
+			else enemyFrozen = true;
+		} else if (input == "a" || input == "u") {
+			int ns,ew;
+			std::cin >> ns;
+			std::cin >> ew; 
+			if (input == "a") g->playerAttack(ns, ew);
+			else g->playerUsePotion(ns, ew);
 		} else if (input == "no") {
-			g
+			if (!g->playerMove(-1, 0)) continue;
+		} else if (input == "so") {
+			if (!g->playerMove(1, 0)) continue;
+		} else if (input == "ea") {
+			if (!g->playerMove(0, 1)) continue;
+		} else if (input == "we") {
+			if (!g->playerMove(0, -1)) continue;
+		} else if (input == "ne") {
+			if (!g->playerMove(-1, 1)) continue; 
+		} else if (input == "nw") {
+			if (!g->playerMove(-1, -1)) continue;
+		} else if (input == "se") {
+			if (!g->playerMove(1, 1)) continue;
+		} else if (input == "sw") {
+			if (!g->playerMove(1, -1)) continue;
+		} else {
+			std::cout << "Invalid Command";
+			continue;
 		}
 
+		if (!enemyFrozen) { g->enemyMove(); }
+		else { g->enemyAttack(); }
+
 	} while (g->player->getHealth() > 0 && std::cin >> input);
+	delete g;
 }
