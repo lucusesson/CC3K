@@ -383,3 +383,10 @@ Grid::~Grid() {
 	}
 }
 
+//Start Stephen
+void Grid::spawnGold(Character& c) {
+	if (c.getRace() == "Merchant"){
+		//TODO SPAWN GOLD
+	}
+}
+//End Stephen
