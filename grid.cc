@@ -174,6 +174,58 @@ void Grid::setGrid() {
 	setEnemies();
 }
 
+//Lucus Start 
+
+bool Grid::enemyAttack(Character &c) {
+	int status;
+	int px = Player.getX();
+	int py = Player.getY();
+	int cx = c.getX();
+	int cy = c.getY();
+	if(px - cx <= 1 && px - cx >= 1 && py - cy <=1 && py - cy >= 1) {
+		status = c.attack(Player);
+		if(c == 0) {
+			spawnGold(c); 
+			theGrid[cx][cy].despawnCharacter();
+		}
+		return true;
+	}
+	return false;
+}
+
+void Grid::enemyMove(bool b) {
+	// true move and attack
+	if(b) {
+		int ns, ew, x, y;
+		for(auto &c : characters) {
+			if(attack(c)) {
+
+			}
+			else {
+				while(true) {
+					ns = randomNum(-1, 1);
+					ew = randomNum(-1, 1);
+					x = c.getX();
+					y = c.getY();
+					if(!theGrid[x+ns][y+ew].isOccupied()) break;
+				}
+				// now need to move tile that has corresponding enemy pointer
+				theGrid[x][y].move(ns, ew);
+
+			}
+		}
+	}
+		// false means just attack
+	else {
+		for(auto &c : characters) {
+			attack(c);
+		}
+	}
+
+}
+
+//Lucus End
+
 bool Grid::attack() {
 
 }
