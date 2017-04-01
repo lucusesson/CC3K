@@ -1,6 +1,7 @@
 #include "game.h"
 #include <string>
-#include "Character.h" 
+#include "Character.h"
+#include "Player.h" 
 
 Character * setPlayer() {
 	char s;
@@ -29,12 +30,12 @@ void Game::startGame(std::ifstream &ifs) {
 
 	g = new Grid(ifs, player);
 	std::string input;
-	bool enemyFrozen = false;
+	bool enemyMove = true;
 	std::cin >> input;
 
 	do {
 		g->displayGrid();
-		std::cout << "Race: " << g->player->getRace() << " Gold: " << g.player->getGold() << std::endl;
+		std::cout << "Race: " << g->player->getRace() << " Gold: " << g->player->getGold() << std::endl;
 		std::cout << "HP: " << g->player->getHealth() << std::endl;
 		std::cout << "Atk: " << g->player->getAtk() << std::endl;
 		std::cout << "Def: " << g->player->getDef() << std::endl;
@@ -75,8 +76,7 @@ void Game::startGame(std::ifstream &ifs) {
 			continue;
 		}
 
-		if (!enemyFrozen) { g->enemyMove(); }
-		else { g->enemyAttack(); }
+		enemyMove(enemyMove);
 
 	} while (g->player->getHealth() > 0 && std::cin >> input);
 	delete g;

@@ -6,10 +6,20 @@
 #include <iostream>
 #include "Enemy.h"
 #include "Player.h"
-#include "game.h"
 
 int main(){
-	Game* g = new Game();
-    std::ifstream ifs ("cc3kfloor.txt");
-
+	Game g;
+    ifstream ifs ("cc3kfloor.txt");
+    g.startGame(ifs)
+    
+    while(true) {
+    	string s;
+    	std::cout << "Restart Game? (Y/y)" << std::endl;
+    	std::cin >> s;
+    	if (s == "Y" || s == "y") {
+    		g.startGame(ifs)
+    	} else {
+    		break;
+    	}
+    }
 }
