@@ -39,7 +39,7 @@ public:
     void getSummary();
     virtual void addPotion(Item *p) = 0;
     virtual bool containPotion(Item *p) = 0;
-    virtual void attack(Character* c) = 0;
+    virtual int attack(Character* c) = 0;
     virtual int receiveAttack(Character* c) = 0;
 };
 

@@ -174,11 +174,26 @@ void Grid::setGrid() {
 	setEnemies();
 }
 
-bool Grid::attack() {
+//Lucus Start 
 
+bool Grid::enemyAttack(Character &c) {
+	int status;
+	int px = Player.getX();
+	int py = Player.getY();
+	int cx = c.getX();
+	int cy = c.getY();
+	if(px - cx <= 1 && px - cx >= 1 && py - cy <=1 && py - cy >= 1) {
+		status = c.attack(Player);
+		if(c == 0) {
+			spawnGold(c); 
+			theGrid[cx][cy].despawnCharacter();
+		}
+		return true;
+	}
+	return false;
 }
 
-void Grid::moveEnemies(bool b) {
+void Grid::enemyMove(bool b) {
 	// true move and attack
 	if(b) {
 		int ns, ew, x, y;
@@ -195,13 +210,20 @@ void Grid::moveEnemies(bool b) {
 					if(!theGrid[x+ns][y+ew].isOccupied()) break;
 				}
 				// now need to move tile that has corresponding enemy pointer
+				theGrid[x][y].move(ns, ew);
 
 			}
 		}
 	}
 		// false means just attack
+	else {
+		for(auto &c : characters) {
+			attack(c);
+		}
+	}
 
 }
+
 
 bool Grid::playerMove(ns, ew) {
 	if (!theGrid[Player->getX()+ew][Player->getY()+ns]->isOccupied() && theGrid[Player->getX()+ew][Player->getY()+ns]->isWalkable()) {
@@ -211,6 +233,11 @@ bool Grid::playerMove(ns, ew) {
 		return false;
 	}
 }
+
+//Lucus End
+
+
+
 
 void Grid::playerAttack(ns, ew) {
 	for (auto &c : characters) {

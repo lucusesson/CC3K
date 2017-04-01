@@ -48,16 +48,18 @@ int Halfling::receiveAttack(Character *c) {
         int gold = this->miss();
         this->alterGold(gold+1);
         return 0;
+    } else {
+        this->attack(c);
     }
     return 1;
 }
 
-void Halfling::attack(Character *c) {
-    c->receiveAttack(this);
+int Halfling::attack(Character *c) {
+    return c->receiveAttack(this);
 }
 
-void Human::attack(Character *c) {
-    c->receiveAttack(this);
+int Human::attack(Character *c) {
+    return c->receiveAttack(this);
 }
 
 int Human::receiveAttack(Character *c) {
@@ -68,6 +70,8 @@ int Human::receiveAttack(Character *c) {
     if (this->health <= 0){
         std:: cout << 'Dead';
         return 0;
+    }else {
+        this->attack(c);
     }
     return 1;
 }
@@ -80,12 +84,11 @@ Dwarf::Dwarf() {
     this->def = 30;
 }
 
-void Dwarf::attack(Character *c) {
-    c->receiveAttack(this);
+int Dwarf::attack(Character *c) {
+    return c->receiveAttack(this);
 }
 
 int Dwarf::receiveAttack(Character *c) {
-    void attack(Character* c);
     int damage = this->damage(this->def, c->getAtk());
     this->health -= damage;
     this->getSummary();
@@ -94,6 +97,8 @@ int Dwarf::receiveAttack(Character *c) {
         int gold = this->miss();
         this->alterGold(gold+1);
         return 0;
+    }else {
+        this->attack(c);
     }
     return 1;
 }
@@ -106,15 +111,15 @@ Elf::Elf() {
     this->def = 10;
 }
 
-void Elf::attack(Character *c) {
-    c->receiveAttack(this);
+int Elf::attack(Character *c) {
+    int a = c->receiveAttack(this);
     if (c->getRace() != "Drow"){
-        c->receiveAttack(this);
+        a = c->receiveAttack(this);
     }
+    return a;
 }
 
 int Elf::receiveAttack(Character *c) {
-    void attack(Character* c);
     int damage = this->damage(this->def, c->getAtk());
     this->health -= damage;
     this->getSummary();
@@ -123,6 +128,8 @@ int Elf::receiveAttack(Character *c) {
         int gold = this->miss();
         this->alterGold(gold+1);
         return 0;
+    }else {
+        this->attack(c);
     }
     return 1;
 }
@@ -135,12 +142,11 @@ Orc::Orc() {
     this->def = 25;
 }
 
-void Orc::attack(Character *c) {
-    c->receiveAttack(this);
+int Orc::attack(Character *c) {
+    return c->receiveAttack(this);
 }
 
 int Orc::receiveAttack(Character *c) {
-    void attack(Character* c);
     int damage = this->damage(this->def, c->getAtk());
     this->health -= damage;
     this->getSummary();
@@ -149,6 +155,8 @@ int Orc::receiveAttack(Character *c) {
         int gold = this->miss();
         this->alterGold(gold+1);
         return 0;
+    }else {
+        this->attack(c);
     }
     return 1;
 }
@@ -161,11 +169,11 @@ Merchant::Merchant() {
     this->def = 5;
 }
 
-void Merchant::attack(Character *c) {
+int Merchant::attack(Character *c) {
     if (this->getThreat() == 0){
-        return;
+        return -2;
     } else {
-        c->receiveAttack(this);
+        return c->receiveAttack(this);
     }
 }
 
@@ -176,6 +184,8 @@ int Merchant::receiveAttack(Character *c) {
     if (this->health <= 0){
         std:: cout << 'Dead';
         return 0;
+    }else {
+        this->attack(c);
     }
     return 1;
 }
@@ -196,8 +206,8 @@ Dragon::Dragon() {
     this->def = 20;
 }
 
-void Dragon::attack(Character *c) {
-    c->receiveAttack(this);
+int Dragon::attack(Character *c) {
+    return c->receiveAttack(this);
 }
 
 int Dragon::receiveAttack(Character *c) {
@@ -207,6 +217,8 @@ int Dragon::receiveAttack(Character *c) {
     if (this->health <= 0){
         std:: cout << 'Dead';
         return 0;
+    }else {
+        this->attack(c);
     }
     return 1;
 }

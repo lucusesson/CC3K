@@ -28,7 +28,12 @@ private:
 	void setEnemies();	
 	void setStairs();
 	void moveEnemies();
+<<<<<<< HEAD
 
+=======
+	void test();
+	void test1();
+>>>>>>> 3bd686c825e4101ccf0e622c2c4311048573b65a
 public:
 	Grid(std::ifstream &i);
 	~Grid();
