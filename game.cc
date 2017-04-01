@@ -35,10 +35,10 @@ void Game::startGame(std::ifstream &ifs) {
 
 	do {
 		g->displayGrid();
-		std::cout << "Race: " << g->player->getRace() << " Gold: " << g->player->getGold() << std::endl;
-		std::cout << "HP: " << g->player->getHealth() << std::endl;
-		std::cout << "Atk: " << g->player->getAtk() << std::endl;
-		std::cout << "Def: " << g->player->getDef() << std::endl;
+		std::cout << "Race: " << g->Player->getRace() << " Gold: " << g->Player->getGold() << std::endl;
+		std::cout << "HP: " << g->Player->getHealth() << std::endl;
+		std::cout << "Atk: " << g->Player->getAtk() << std::endl;
+		std::cout << "Def: " << g->Player->getDef() << std::endl;
 		std::cout << "Action: " << std::endl;
 
 		if (input == "q") {
@@ -47,8 +47,8 @@ void Game::startGame(std::ifstream &ifs) {
 		} else if (input == "r") {
 			break;
 		} else if (input == "f") {
-			if (enemyFrozen) enemyFrozen = false;
-			else enemyFrozen = true;
+			if (enemyMove) enemyMove = false;
+			else enemyMove = true;
 		} else if (input == "a" || input == "u") {
 			int ns,ew;
 			std::cin >> ns;
@@ -76,8 +76,8 @@ void Game::startGame(std::ifstream &ifs) {
 			continue;
 		}
 
-		enemyMove(enemyMove);
+		g->enemyMove(enemyMove);
 
-	} while (g->player->getHealth() > 0 && std::cin >> input);
+	} while (g->Player->getHealth() > 0 && std::cin >> input);
 	delete g;
 }
