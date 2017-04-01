@@ -30,6 +30,7 @@ private:
 	void setStairs();
 	void moveEnemies();
 	void test();
+	void test1();
 public:
 	Grid(std::ifstream &i);
 	~Grid();
