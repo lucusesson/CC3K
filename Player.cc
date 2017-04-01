@@ -5,7 +5,9 @@
 #include "Player.h"
 #include "Enemy.h"
 
-Player::Player() {}
+Player::Player() {
+    this->setSymbol('@');
+}
 
 Drow::Drow() {
     this->setRace("Drow");

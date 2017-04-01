@@ -18,6 +18,7 @@ bool Enemy::containPotion(Item *p) {
 }
 
 Human::Human() {
+    this->setSymbol('H');
     this->setRace("Human");
     this->health = 140;
     this->atk = 20;
@@ -25,6 +26,7 @@ Human::Human() {
 }
 
 Halfling::Halfling() {
+    this->setSymbol('L');
     this->setRace("Halfling");
     this->health = 100;
     this->atk = 15;
@@ -69,6 +71,8 @@ int Human::receiveAttack(Character *c) {
 }
 
 Dwarf::Dwarf() {
+    this->setSymbol('W');
+    this->setRace("Dwarf");
     this->health = 100;
     this->atk = 20;
     this->def = 30;
@@ -91,6 +95,8 @@ int Dwarf::receiveAttack(Character *c) {
 }
 
 Elf::Elf() {
+    this->setRace("Elf");
+    this->setSymbol('E');
     this->health = 140;
     this->atk = 30;
     this->def = 10;
@@ -116,6 +122,8 @@ int Elf::receiveAttack(Character *c) {
 }
 
 Orc::Orc() {
+    this->setRace("Orc");
+    this->setSymbol('O');
     this->health = 180;
     this->atk = 30;
     this->def = 25;
@@ -139,6 +147,7 @@ int Orc::receiveAttack(Character *c) {
 
 Merchant::Merchant() {
     this->setRace("Merchant");
+    this->setSymbol('M');
     this->health = 30;
     this->atk = 70;
     this->def = 5;
@@ -171,3 +180,25 @@ void Merchant::setThreat() {
     Merchant::threat = 1;
 }
 
+Dragon::Dragon() {
+    this->setRace("Dragon");
+    this->setSymbol('D');
+    this->health = 150;
+    this->atk = 20;
+    this->def = 20;
+}
+
+void Dragon::attack(Character *c) {
+    c->receiveAttack(this);
+}
+
+int Dragon::receiveAttack(Character *c) {
+    int damage = this->damage(this->def, c->getAtk());
+    this->health -= damage;
+    this->getSummary();
+    if (this->health <= 0){
+        std:: cout << 'Dead';
+        return 0;
+    }
+    return 1;
+}

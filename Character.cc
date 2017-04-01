@@ -11,6 +11,10 @@ bool Character::isDead() {
     }
     return false;
 }
+void Character::setSymbol(char sym) {
+    this->symbol = sym;
+}
+
 
 void Character::setRace(std::string race) {
     this->race = race;

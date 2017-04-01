@@ -1,10 +1,10 @@
 CXX=g++
 CXXFLAGS=-std=c++14 -Wall -MMD -Werror=vla
-OBJECTS=main.o Character.o Item.o Enemy.o Gold.o Player.o Potion.o subject.o game.o grid.o tile.o
+OBJECTS=main.o Character.o Enemy.o Player.o Item.o
 DEPENDS=${OBJECTS:.o=.d}
 EXEC=CC3K
 ${EXEC}: ${OBJECTS}
-	${CXX} ${CXXFLAGS} ${OBJECTS} -o ${EXEC} -lX11
+	${CXX} ${CXXFLAGS} ${OBJECTS} -o ${EXEC}
 -include ${DEPENDS}
 
 clean:

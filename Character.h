@@ -12,19 +12,12 @@ class Item;
 
 class Character {
 protected:
-
+    std::string race;
+    char symbol;
     int health, maxHealth, atk, def, gold, x, y;
     int damage(int def, int atk);
-    char symbol;
-    std::string race;
     void setRace(std::string race);
-    /*
-    void alterHealth();
-    void alterAtk();
-    void alterDef();
-    void alterGold();
-    void move(int direction);
-    void setXY(int x, int y)*/
+    void setSymbol(char sym);
 public:
     std::string getRace();
     bool isDead();
