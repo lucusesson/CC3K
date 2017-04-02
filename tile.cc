@@ -73,7 +73,6 @@ void Tile::despawnCharacter() {
 
 void Tile::despawnItem() {
 	item = nullptr;
-
 }
 
 void Tile::move(int ns, int ew) {

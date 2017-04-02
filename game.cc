@@ -27,13 +27,15 @@ Player* setPlayer() {
 Game::Game() { g = nullptr; }
 
 void Game::startGame(std::ifstream &ifs) {
+
+
 	Player* player = setPlayer();
 	if (player == nullptr) return;
 
 	g = new Grid(ifs, player);
 	std::string input;
 	bool enemyMove = true; 
-
+	int level = 0;
 
 	do {
 		g->displayGrid();
@@ -58,27 +60,34 @@ void Game::startGame(std::ifstream &ifs) {
 			if (input == "a") g->playerAttack(ew, ns);
 			else g->playerUsePotion(ew, ns);
 		} else if (input == "no") {
-			if (!g->playerMove(0, -1)) continue;
+			if (!playerMove(0, -1)) continue;
 		} else if (input == "so") {
-			if (!g->playerMove(0, 1)) continue;
+			if (!playerMove(0, 1)) continue;
 		} else if (input == "ea") {
-			if (!g->playerMove(1, 0)) continue;
+			if (!playerMove(1, 0)) continue;
 		} else if (input == "we") {
-			if (!g->playerMove(-1, 0)) continue;
+			if (!playerMove(-1, 0)) continue;
 		} else if (input == "ne") {
-			if (!g->playerMove(1, -1)) continue; 
+			if (!playerMove(1, -1)) continue; 
 		} else if (input == "nw") {
-			if (!g->playerMove(-1, -1)) continue;
+			if (!playerMove(-1, -1)) continue;
 		} else if (input == "se") {
-			if (!g->playerMove(1, 1)) continue;
+			if (!playerMove(1, 1)) continue;
 		} else if (input == "sw") {
-			if (!g->playerMove(-1, 1)) continue;
+			if (!playerMove(-1, 1)) continue;
 		} else {
 			std::cout << "Invalid Command";
 			continue;
 		}
 		g->enemyMove(enemyMove);
+		if (g->getSymbol(player->getX(), player->getY()) == '/') {
+			level++;
+			g->newLevel();
+		}
 
-	} while (g->player->getHealth() > 0 && !cin.eof());
+	} while (g->player->getHealth() > 0 && !cin.eof() && level < 6);
 	delete g;
+	if (level == 6) {
+		cout << "Congrats on beating the Game!!" << endl;
+	}
 }

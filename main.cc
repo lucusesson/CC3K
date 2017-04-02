@@ -20,7 +20,8 @@ int main(){
     	std::cout << "Restart Game? (Y/y)" << std::endl;
     	std::cin >> s;
     	if (s == "Y" || s == "y") {
-    		g.startGame(ifs);
+            std::ifstream ifs2 ("cc3kfloor.txt");
+    		g.startGame(ifs2);
     	} else {
     		break;
     	}
