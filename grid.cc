@@ -14,6 +14,9 @@ int randomNum(int low, int high) {
 	std::uniform_int_distribution<int> distribution(low,high);
 	int rnum = distribution(generator);
 	return rnum;*/
+    if (low == 0 && high == 4){
+        high = 5;
+    }
     int a = rand() % (high - low);
     a = a + low;
 	if (a > high){
@@ -50,36 +53,42 @@ void Grid::setPotions() {
 			p = new atkBoost();
 			p->setXY(whichChamber,WhereinChamber);
 			theChamber[whichChamber][WhereinChamber]->setItem(p);
+            cout << theChamber[whichChamber][WhereinChamber]->getSymbol() << endl;
 			items.push_back(p);
 		}
 		else if(whichPotion == 2) {
 			p = new atkWound();
 			p->setXY(whichChamber,WhereinChamber);
 			theChamber[whichChamber][WhereinChamber]->setItem(p);
+            cout << theChamber[whichChamber][WhereinChamber]->getSymbol() << endl;
 			items.push_back(p);
 		}
 		else if(whichPotion == 3) {
 			p = new defBoost();
 			p->setXY(whichChamber,WhereinChamber);
 			theChamber[whichChamber][WhereinChamber]->setItem(p);
+            cout << theChamber[whichChamber][WhereinChamber]->getSymbol() << endl;
 			items.push_back(p);
 		}
 		else if(whichPotion == 4) {
 			p = new defWound();
 			p->setXY(whichChamber,WhereinChamber);
 			theChamber[whichChamber][WhereinChamber]->setItem(p);
+            cout << theChamber[whichChamber][WhereinChamber]->getSymbol() << endl;
 			items.push_back(p);
 		}
 		else if(whichPotion == 5) {
 			p = new healthBoost();
 			p->setXY(whichChamber,WhereinChamber);
 			theChamber[whichChamber][WhereinChamber]->setItem(p);
+            cout << theChamber[whichChamber][WhereinChamber]->getSymbol() << endl;
 			items.push_back(p);
 		}
 		else {
 			p = new healthWound();
 			p->setXY(whichChamber,WhereinChamber);
 			theChamber[whichChamber][WhereinChamber]->setItem(p);
+            cout << theChamber[whichChamber][WhereinChamber]->getSymbol() << endl;
 			items.push_back(p);
 		}
 		cout << "Access Chamber:" << whichChamber << "Spot:" << WhereinChamber << endl;
@@ -95,7 +104,7 @@ void Grid::setGold() {
 			whichGold = randomNum(1,8);
 			whichChamber = randomNum(0,4);
 			WhereinChamber = randomChamber(whichChamber);
-			if(theChamber[whichChamber][WhereinChamber]->isOccupied()) break;
+			if(!theChamber[whichChamber][WhereinChamber]->isOccupied()) break;
 		}
 		if(whichGold <= 5) {
 			g = new normalGold();
@@ -127,7 +136,7 @@ void Grid::setEnemies() {
 			whichEnemy = randomNum(1,18);
 			whichChamber = randomNum(0,4);
 			WhereinChamber = randomChamber(whichChamber);
-			if(theChamber[whichChamber][WhereinChamber]->isOccupied()) break;
+			if(!theChamber[whichChamber][WhereinChamber]->isOccupied()) break;
 		}
 		if(whichEnemy <= 4) {
 			e = new Human();
@@ -379,11 +388,19 @@ SubscriptionType Grid::subType() const {
 
 void Grid::displayGrid() {
 	for (int i = 0; i < height; i++) {
-		for (int j = 0; j < width; j++) {
-			std::cout << theGrid[i][j]->getSymbol();
-		}
-		std::cout << std::endl;
-	}
+        for (int j = 0; j < width; j++) {
+            std::cout << theGrid[i][j]->getSymbol();
+
+        }
+        std::cout << std::endl;
+    }
+    for (int i = 0; i < theChamber.size(); i++) {
+        for (int j = 0; j < theChamber[i].size(); j++) {
+            std::cout << theChamber[i][j]->getSymbol();
+
+        }
+        std::cout << std::endl;
+    }
 }
 
 void Grid::notify(Info &i) {
