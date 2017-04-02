@@ -55,9 +55,11 @@ bool Tile::charSet(){
 }
 
 Character* Tile::getCharacter(){
-	cout << "Made it" << endl;
-		cout << "Inside1" << endl;
 		return this->character;
+}
+
+Item* Tile::getItem() {
+	return item;
 }
 
 void Tile::setItem(Item * i) {

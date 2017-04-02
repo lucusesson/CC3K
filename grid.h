@@ -39,6 +39,7 @@ public:
 	void displayGrid();
 	
 	//start Michael
+	char getSymbol(int ew, int ns);
 	void enemyMove(bool b);
 	bool enemyAttack(Character &c);
 	bool playerMove(int ew, int ns);

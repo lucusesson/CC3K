@@ -278,9 +278,13 @@ void Grid::enemyMove(bool b) {
 
 
 bool Grid::playerMove(int ew, int ns) {
-	cout << theGrid[player->getX()+ew][player->getY()+ns]->getSymbol();
-
-	if (!theGrid[player->getX()+ew][player->getY()+ns]->isOccupied() && theGrid[player->getX()+ew][player->getY()+ns]->isWalkable()) {
+	Item* it = theGrid[player->getX()+ew][player->getY()+ns]->getItem();
+	if(theGrid[player->getX()+ew][player->getY()+ns]->getSymbol() = 'G') {
+		it->alterPlayer(player);
+	}
+	eraseItem(it);
+	if (!theGrid[player->getX()+ew][player->getY()+ns]->isOccupied() 
+			&& theGrid[player->getX()+ew][player->getY()+ns]->isWalkable()) {
 		theGrid[player->getX()][player->getY()]->move(ns,ew);
 		return true;
 	} else {
@@ -289,9 +293,25 @@ bool Grid::playerMove(int ew, int ns) {
 }
 
 //Lucus End
+// TODO: walking on gold, newLevel method
+void Grid::eraseItem(Item *it) {
+	for (unsigned int i = 0; i < items.size(); i++) {
+				if (items[i] == it) {
+					items.erase(items.begin() + i);
+				}
+			}
+}
 
 void Grid::playerUsePotion(int ew, int ns) {
-// TODO BITCH
+	Item* it = theGrid[player->getX()+ew][player->getY()+ns]->getItem();
+	theGrid[player->getX()+ew][player->getY()+ns]->alterPlayer(player);
+	player->addPotion(theGrid[player->getX()+ew][player->getY()+ns]->getItem());
+	theGrid[player->getX()+ew][player->getY()+ns]->despawnItem();
+	eraseItem(it);
+}
+
+char getSymbol(int ew, int ns) {
+	return theGrid[ew][ns]->getSymbol();
 }
 
 

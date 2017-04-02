@@ -22,6 +22,7 @@ public:
 	SubscriptionType subType() const override;
 	Character* getCharacter();
 	bool charSet();
+	Item* getItem();
 	void setCharacter(Character * c);
 	void setItem(Item * i);
 	void despawnCharacter();
