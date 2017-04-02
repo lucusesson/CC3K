@@ -9,10 +9,12 @@ Player::Player() {
     this->setSymbol('@');
 }
 
+Player::~Player() {}//potions.clear();}
+
 Drow::Drow() {
     this->setRace("Drow");
     this->health = 150;
-    this->atk = 25;
+    this->atk = 250000000;
     this->def = 15;
     this->gold = 0;
 }
@@ -22,6 +24,18 @@ int Drow::attack(Character *c) {
 }
 
 int Drow::receiveAttack(Character *c) {
+    int a = this->miss();
+    if (a == 0){
+        std::cout << "miss";
+        return -1;
+    }
+    int damage = this->damage(this->def, c->getAtk());
+    this->health -= damage;
+    this->getSummary();
+    if (this->health <= 0){
+        std:: cout << 'Dead';
+        return 0;
+    }
     return 1;
 }
 

@@ -31,11 +31,6 @@ void Game::startGame(std::ifstream &ifs) {
 	if (player == nullptr) return;
 
 	g = new Grid(ifs, player);
-	int ns,ew;
-			std::cin >> ew;
-			cin >> ns;
-	cout << g->theGrid[ew][ns]->getSymbol() << endl ;
-
 	std::string input;
 	bool enemyMove = true; 
 
@@ -63,29 +58,27 @@ void Game::startGame(std::ifstream &ifs) {
 			if (input == "a") g->playerAttack(ns, ew);
 			else g->playerUsePotion(ns, ew);
 		} else if (input == "no") {
-			if (!g->playerMove(-1, 0)) continue;
-		} else if (input == "so") {
-			cout << "SO" << endl;
-			if (!g->playerMove(1, 0)) continue;
-		} else if (input == "ea") {
-			if (!g->playerMove(0, 1)) continue;
-		} else if (input == "we") {
 			if (!g->playerMove(0, -1)) continue;
+		} else if (input == "so") {
+			if (!g->playerMove(0, 1)) continue;
+		} else if (input == "ea") {
+			if (!g->playerMove(1, 0)) continue;
+		} else if (input == "we") {
+			if (!g->playerMove(-1, 0)) continue;
 		} else if (input == "ne") {
-			if (!g->playerMove(-1, 1)) continue; 
+			if (!g->playerMove(1, -1)) continue; 
 		} else if (input == "nw") {
 			if (!g->playerMove(-1, -1)) continue;
 		} else if (input == "se") {
 			if (!g->playerMove(1, 1)) continue;
 		} else if (input == "sw") {
-			if (!g->playerMove(1, -1)) continue;
+			if (!g->playerMove(-1, 1)) continue;
 		} else {
 			std::cout << "Invalid Command";
 			continue;
 		}
-
 		g->enemyMove(enemyMove);
 
-	} while (g->player->getHealth() > 0 && std::cin >> input);
+	} while (g->player->getHealth() > 0 && !cin.eof() && false);
 	delete g;
 }

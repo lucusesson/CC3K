@@ -4,6 +4,7 @@
 
 #include "Character.h"
 #include <math.h>
+Character::~Character() {}
 
 bool Character::isDead() {
     if (this->health <= 0){
@@ -58,6 +59,7 @@ void Character::alterGold(int a) {
 }
 
 int Character::damage(int def, int atk) {
+    std::cout << "DAMAGE:" << ceil((100.0/(100.0+def))*atk) << std::endl;
     return ceil((100.0/(100.0+def))*atk);
 }
 

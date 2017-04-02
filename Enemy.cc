@@ -17,6 +17,8 @@ bool Enemy::containPotion(Item *p) {
     return false;
 }
 
+Enemy::~Enemy(){}
+
 Human::Human() {
     this->setSymbol('H');
     this->setRace("Human");
@@ -51,6 +53,8 @@ int Halfling::receiveAttack(Character *c) {
     } else {
         this->attack(c);
     }
+    this->getSummary();
+    c->getSummary();
     return 1;
 }
 
@@ -73,6 +77,7 @@ int Human::receiveAttack(Character *c) {
     }else {
         this->attack(c);
     }
+    this->getSummary();
     return 1;
 }
 
@@ -100,6 +105,7 @@ int Dwarf::receiveAttack(Character *c) {
     }else {
         this->attack(c);
     }
+    this->getSummary();
     return 1;
 }
 
@@ -131,6 +137,8 @@ int Elf::receiveAttack(Character *c) {
     }else {
         this->attack(c);
     }
+    this->getSummary();
+    c->getSummary();
     return 1;
 }
 
@@ -158,6 +166,7 @@ int Orc::receiveAttack(Character *c) {
     }else {
         this->attack(c);
     }
+    this->getSummary();
     return 1;
 }
 
@@ -187,6 +196,7 @@ int Merchant::receiveAttack(Character *c) {
     }else {
         this->attack(c);
     }
+    this->getSummary();
     return 1;
 }
 

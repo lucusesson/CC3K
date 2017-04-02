@@ -1,5 +1,8 @@
 #include "tile.h"
 
+
+using namespace std;
+
 Tile::Tile(char symbol, int x, int y, bool walkable): symbol(symbol), x(x), y(y), walkable(walkable) {
 	this->character = nullptr;
 	this->item=nullptr;
@@ -43,6 +46,20 @@ int Tile::getY() {
     return y;
 }
 
+bool Tile::charSet(){
+	if (character != nullptr){
+		return true;
+	} else{
+		return false;
+		}
+}
+
+Character* Tile::getCharacter(){
+	cout << "Made it" << endl;
+		cout << "Inside1" << endl;
+		return this->character;
+}
+
 void Tile::setItem(Item * i) {
 	item = i;
 	i->setXY(x,y);
@@ -60,13 +77,14 @@ void Tile::despawnItem() {
 }
 
 void Tile::move(int ns, int ew) {
-	Info i {character, x, y, ns, ew};
+	Info i {character, x, y, ew, ns};
 	character = nullptr;
 	notifyObservers(SubscriptionType::SwitchOnly, i);
 }
 
 //If a character is moved, all surrounding within one block radius are notified
 void Tile::notify(Info &i) {
+	//cout << "X: " << x << " Y: " << y << " DX:" << i.x + i.displacedX << " DY: " << i.y + i.displacedY << endl;
 	if ((i.x + i.displacedX == x) && (i.y + i.displacedY == y)) {
 		setCharacter(i.ch);
 	}
@@ -77,6 +95,8 @@ SubscriptionType Tile::subType() const {
 }
 
 Tile::~Tile() {
-	delete character;
-	delete item;
+	if (character != nullptr)
+		delete character;
+	if (item != nullptr)
+		delete item;
 }

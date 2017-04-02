@@ -20,7 +20,8 @@ public:
 	~Tile();
 	
 	SubscriptionType subType() const override;
-
+	Character* getCharacter();
+	bool charSet();
 	void setCharacter(Character * c);
 	void setItem(Item * i);
 	void despawnCharacter();

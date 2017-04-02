@@ -16,6 +16,7 @@ private:
 	std::vector<std::vector<Tile *>> theChamber;
 	std::vector <Character *> characters;
 	std::vector <Item *> items;
+	std::vector<std::vector<Tile *>> theGrid;
 	
 	void initGrid(std::ifstream &i);
 	void setObservers();
@@ -32,7 +33,6 @@ private:
 	void spawnGold(Character& c);
 	void setPlayer();
 public:
-	std::vector<std::vector<Tile *>> theGrid;
 	Player* player;
 	Grid(std::ifstream &i, Player* p);
 	~Grid();

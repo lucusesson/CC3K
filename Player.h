@@ -17,6 +17,7 @@ class Player: public Character{
     std::vector<Item*> potions;
 public:
     Player();
+    ~Player() override;
     void addPotion(Item *p) override;
     bool containPotion(Item *p) override;
 };

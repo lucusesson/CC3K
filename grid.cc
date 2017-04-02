@@ -183,8 +183,7 @@ void Grid::setPlayer() {
     }
     int WhereinChamber = randomChamber(whichChamber);
     theChamber[whichChamber][WhereinChamber]->setCharacter(this->player);
-    //this->player->setXY(theChamber[whichChamber][WhereinChamber]->getX(),theChamber[whichChamber][WhereinChamber]->getY());
-    theChamber[whichChamber][WhereinChamber]->setSymbol('@');
+    //theChamber[whichChamber][WhereinChamber]->setSymbol('@');
 }
 
 void Grid::setGrid() {
@@ -207,7 +206,7 @@ bool Grid::enemyAttack(Character &c) {
 	int py = player->getY();
 	int cx = c.getX();
 	int cy = c.getY();
-	if(px - cx <= 1 && px - cx >= 1 && py - cy <=1 && py - cy >= 1) {
+	if(px - cx <= 1 && px - cx >= -1 && py - cy <=1 && py - cy >= -1) {
 		status = c.attack(player);
 		if(status == 0) {
 			spawnGold(c); 
@@ -220,40 +219,69 @@ bool Grid::enemyAttack(Character &c) {
 
 void Grid::enemyMove(bool b) {
 	// true move and attack
-	if(b) {
-		int ns, ew, x, y;
-		for(auto &c : characters) {
-			if(enemyAttack(*c)) {
-
-			}
-			else {
-				while(true) {
-					ns = randomNum(-1, 1);
-					ew = randomNum(-1, 1);
-					x = c->getX();
-					y = c->getY();
-					if(!(theGrid[x+ns][y+ew]->isOccupied()) 
-						&& theGrid[x+ns][y+ew]->isWalkable()) break;
+	int ns, ew, x, y;
+	for(auto &c : characters) {
+			// TODO FIX ENEMY ATTACK
+		
+		if (!enemyAttack(*c) && b) {
+			for (int i = 0; i < 6; i++) {
+				int randomA = randomNum(1,9);
+				ns = 0;
+				ew = 0;
+				if (randomA == 1){
+					ns = 0;
+					ew = 1;
 				}
-				// now need to move tile that has corresponding enemy pointer
-				theGrid[x][y]->move(ns, ew);
-
+				if (randomA == 2){
+					ns = 0;
+					ew = -1;
+				}
+				if (randomA == 3){
+					ns = 1;
+					ew = 0;
+				}
+				if (randomA == 4){
+					ns = 1;
+					ew = 1;
+				}
+				if (randomA == 5){
+					ns = 1;
+					ew = -1;
+				}
+				if (randomA == 6){
+					ns = -1;
+					ew = -1;
+				}
+				if (randomA== 7){
+					ns = -1;
+					ew = 0;
+				}
+				if (randomA == 8){
+					ns = -1;
+					ew = -1;
+				}
+				x = c->getX();
+				y = c->getY();
+					//cout << c->getRace() << endl;
+				if(!(theGrid[x+ew][y+ns]->isOccupied()) 
+					&& theGrid[x+ew][y+ns]->isWalkable()) break;
+					if(i==5) return;	
 			}
-		}
-	}
-		// false means just attack
-	else {
-		for(auto &c : characters) {
-			enemyAttack(*c);
-		}
-	}
+				// now need to move tile that has corresponding enemy pointer
+			theGrid[x][y]->move(ns, ew);
 
+		}
+	}
 }
+		// false means just attack
 
 
-bool Grid::playerMove(int ns, int ew) {
-	if (!theGrid[player->getY()+ns][player->getX()+ew]->isOccupied() && theGrid[player->getY()+ns][player->getX()+ew]->isWalkable()) {
-		theGrid[player->getY()][player->getX()]->move(ns,ew);
+
+bool Grid::playerMove(int ew, int ns) {
+	cout << theGrid[player->getX()+ew][player->getY()+ns]->getSymbol();
+
+	if (!theGrid[player->getX()+ew][player->getY()+ns]->isOccupied() && theGrid[player->getX()+ew][player->getY()+ns]->isWalkable()) {
+		theGrid[player->getX()][player->getY()]->move(ns,ew);
 		return true;
 	} else {
 		return false;
@@ -268,12 +296,19 @@ void Grid::playerUsePotion(int ns, int ew) {
 
 
 void Grid::playerAttack(int ns, int ew) {
-	for (auto &c : characters) {
-		if (player->getX() + ew == c->getX() && player->getY() + ns == c->getY()) {
-			if (player->attack(c) == 0) {
-				theGrid[c->getY()][c->getX()]->despawnCharacter();
-			} 
+	if (theGrid[player->getX()+ew][player->getY()+ns]->charSet()){
+		Character* c = theGrid[player->getX()+ew][player->getY()+ns]->getCharacter();
+		player->attack(c);
+		if (c->getHealth() <= 0){
+			for (unsigned int i = 0; i < characters.size(); i++) {
+				if (characters[i] == c) {
+					characters.erase(characters.begin() + i);
+				}
+			}
+			theGrid[player->getX()+ew][player->getY()+ns]->despawnCharacter();
 		}
+	} else {
+		cout << "FAILED" << endl;
 	}
 }
 
@@ -317,14 +352,14 @@ void Grid::initGrid(std::ifstream &i) {
 }
 
 bool Grid::inGrid(int r, int c) {
-	return r >= 0 && r < height && c >= 0 && c < width ; 
+	return r >= 0 && c < height && c >= 0 && r < width ; 
 }
 
 void Grid::setObservers() {
 	for (int i = 0; i < width; i++) {
 		for (int j = 0; j < height; j++) {
 			//If tile is walkable, check each neighbour and if it exists, add to cell Observer list
-			if (theGrid[i][j]->getSymbol() == '.') {
+			if (theGrid[i][j]->getSymbol() == '.' || theGrid[i][j]->getSymbol() == '#' || theGrid[i][j]->getSymbol() == '+') {
 				if (inGrid(i+1,j)) 
 					theGrid[i][j]->attach(theGrid[i+1][j]);
 				
@@ -349,7 +384,8 @@ void Grid::setObservers() {
 				if (inGrid(i-1,j+1)) 
 					theGrid[i][j]->attach(theGrid[i-1][j+1]);
 
-				setChamber(theGrid[i][j], i, j);
+				if (theGrid[i][j]->getSymbol() == '.')
+					setChamber(theGrid[i][j], i, j);
 			}
 		}
 	}
@@ -399,17 +435,18 @@ void Grid::notify(Info &i) {
 }
 
 Grid::~Grid() {
+	
+	/*for (int i = 0; i < characters.size(); i++){
+		delete characters[i];
+	}
+	for (int i = 0; i < items.size(); i++){
+		delete items[i];
+	}*/
 	for (int i = 0; i < theGrid.size(); i++){
         for (int j = 0; j < theGrid[0].size();j++){
             delete theGrid[i][j];
         }
 
-	}
-	for (int i = 0; i < characters.size(); i++){
-		delete characters[i];
-	}
-	for (int i = 0; i < items.size(); i++){
-		delete items[i];
 	}
 }
 

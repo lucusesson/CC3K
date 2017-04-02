@@ -23,6 +23,7 @@ protected:
     void setRace(std::string race);
     void setSymbol(char sym);
 public:
+    virtual ~Character() = 0;
     std::string getRace();
     bool isDead();
     int miss();
