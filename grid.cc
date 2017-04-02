@@ -290,7 +290,7 @@ bool Grid::playerMove(int ew, int ns) {
 
 //Lucus End
 
-void Grid::playerUsePotion(int ns, int ew) {
+void Grid::playerUsePotion(int ew, int ns) {
 // TODO BITCH
 }
 
@@ -435,18 +435,10 @@ void Grid::notify(Info &i) {
 }
 
 Grid::~Grid() {
-	
-	/*for (int i = 0; i < characters.size(); i++){
-		delete characters[i];
-	}
-	for (int i = 0; i < items.size(); i++){
-		delete items[i];
-	}*/
 	for (int i = 0; i < theGrid.size(); i++){
         for (int j = 0; j < theGrid[0].size();j++){
             delete theGrid[i][j];
         }
-
 	}
 }
 

@@ -41,8 +41,8 @@ public:
 	//start Michael
 	void enemyMove(bool b);
 	bool enemyAttack(Character &c);
-	bool playerMove(int ns, int ew);
-	void playerAttack(int ns, int ew);
+	bool playerMove(int ew, int ns);
+	void playerAttack(int ew, int ns);
 	void playerUsePotion(int ns, int ew);
 	//end Michael
 

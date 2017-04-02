@@ -55,8 +55,8 @@ void Game::startGame(std::ifstream &ifs) {
 			int ns,ew;
 			std::cin >> ns;
 			std::cin >> ew; 
-			if (input == "a") g->playerAttack(ns, ew);
-			else g->playerUsePotion(ns, ew);
+			if (input == "a") g->playerAttack(ew, ns);
+			else g->playerUsePotion(ew, ns);
 		} else if (input == "no") {
 			if (!g->playerMove(0, -1)) continue;
 		} else if (input == "so") {
@@ -79,6 +79,6 @@ void Game::startGame(std::ifstream &ifs) {
 		}
 		g->enemyMove(enemyMove);
 
-	} while (g->player->getHealth() > 0 && !cin.eof() && false);
+	} while (g->player->getHealth() > 0 && !cin.eof());
 	delete g;
 }
