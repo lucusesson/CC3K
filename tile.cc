@@ -30,10 +30,17 @@ bool Tile::isWalkable() { return walkable; }
 //Any notification to subscription type ALL is passed a nullptr as info,
 //given that no actual data is stored within the grid class. The grid class
 //is merely notified and reprints the game screen
-void Tile::setCharacter(Character * c) {
+void Tile::setCharacter(Character* c) {
 	character = c;
 	c->setXY(x,y);
+}
 
+int Tile::getX() {
+    return x;
+}
+
+int Tile::getY() {
+    return y;
 }
 
 void Tile::setItem(Item * i) {

@@ -16,11 +16,11 @@ void Character::setSymbol(char sym) {
 }
 
 int Character::getX() {
-    return this->x;
+    return this->xVal;
 }
 
 int Character::getY() {
-    return this->y;
+    return this->yVal;
 }
 
 void Character::setRace(std::string race) {
@@ -36,9 +36,12 @@ int Character::miss() {
     return a;
 }
 
+
+
 void Character::setXY(int x, int y) {
-    this->x = x;
-    this->y=y;
+        xVal = x;
+        yVal = y;
+
 }
 
 void Character::alterHealth(int a) {

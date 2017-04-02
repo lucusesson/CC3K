@@ -18,7 +18,7 @@ class Character {
 protected:
     std::string race;
     char symbol;
-    int health, maxHealth, atk, def, gold, x, y;
+    int health, maxHealth, atk, def, gold, xVal = 0, yVal = 0;
     int damage(int def, int atk);
     void setRace(std::string race);
     void setSymbol(char sym);

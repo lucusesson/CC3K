@@ -17,6 +17,9 @@ int randomNum(int low, int high) {
     if (low == 0 && high == 4){
         high = 5;
     }
+    if (low == 0 && high == 3){
+        high = 4;
+    }
     int a = rand() % (high - low);
     a = a + low;
 	if (a > high){
@@ -40,58 +43,48 @@ void Grid::setPotions() {
 	int whichPotion, WhereinChamber, whichChamber;
 	Item *p = nullptr;
 	for(int i = 1; i <= 10; ++i) {
-		cout << i << endl;
 		while(true) {
 			whichPotion = randomNum(1,6);
 			whichChamber = randomNum(0,4);
-            //cout << whichPotion << " " << whichChamber << endl;
 			WhereinChamber = randomChamber(whichChamber);
 			if(!theChamber[whichChamber][WhereinChamber]->isOccupied()) break;
 		}
-        cout << "test3" << "Potion:"<< whichPotion << endl;
 		if(whichPotion == 1) {
 			p = new atkBoost();
 			p->setXY(whichChamber,WhereinChamber);
 			theChamber[whichChamber][WhereinChamber]->setItem(p);
-            cout << theChamber[whichChamber][WhereinChamber]->getSymbol() << endl;
 			items.push_back(p);
 		}
 		else if(whichPotion == 2) {
 			p = new atkWound();
 			p->setXY(whichChamber,WhereinChamber);
 			theChamber[whichChamber][WhereinChamber]->setItem(p);
-            cout << theChamber[whichChamber][WhereinChamber]->getSymbol() << endl;
 			items.push_back(p);
 		}
 		else if(whichPotion == 3) {
 			p = new defBoost();
 			p->setXY(whichChamber,WhereinChamber);
 			theChamber[whichChamber][WhereinChamber]->setItem(p);
-            cout << theChamber[whichChamber][WhereinChamber]->getSymbol() << endl;
 			items.push_back(p);
 		}
 		else if(whichPotion == 4) {
 			p = new defWound();
 			p->setXY(whichChamber,WhereinChamber);
 			theChamber[whichChamber][WhereinChamber]->setItem(p);
-            cout << theChamber[whichChamber][WhereinChamber]->getSymbol() << endl;
 			items.push_back(p);
 		}
 		else if(whichPotion == 5) {
 			p = new healthBoost();
 			p->setXY(whichChamber,WhereinChamber);
 			theChamber[whichChamber][WhereinChamber]->setItem(p);
-            cout << theChamber[whichChamber][WhereinChamber]->getSymbol() << endl;
 			items.push_back(p);
 		}
 		else {
 			p = new healthWound();
 			p->setXY(whichChamber,WhereinChamber);
 			theChamber[whichChamber][WhereinChamber]->setItem(p);
-            cout << theChamber[whichChamber][WhereinChamber]->getSymbol() << endl;
 			items.push_back(p);
 		}
-		cout << "Access Chamber:" << whichChamber << "Spot:" << WhereinChamber << endl;
 		p = nullptr;
 	}
 }
@@ -124,7 +117,6 @@ void Grid::setGold() {
 			theChamber[whichChamber][WhereinChamber]->setItem(g);
 			items.push_back(g);
 		}
-		cout << "Access Chamber:" << whichChamber << "Spot:" << WhereinChamber << endl;
 	}
 }
 
@@ -181,24 +173,30 @@ void Grid::setStairs() {
 	int whichChamber, WhereinChamber;
     whichChamber = randomNum(0,4);
     WhereinChamber = randomChamber(whichChamber);
-	cout << "Access Chamber:" << whichChamber << "Spot:" << WhereinChamber << endl;
 	theChamber[whichChamber][WhereinChamber]->setSymbol('\\');
+    stairsChamber = whichChamber;
 }
-
+void Grid::setPlayer() {
+    int whichChamber = randomNum(0,3);
+    if (whichChamber >= stairsChamber){
+        whichChamber += 1;
+    }
+    int WhereinChamber = randomChamber(whichChamber);
+    theChamber[whichChamber][WhereinChamber]->setCharacter(this->player);
+    //this->player->setXY(theChamber[whichChamber][WhereinChamber]->getX(),theChamber[whichChamber][WhereinChamber]->getY());
+    theChamber[whichChamber][WhereinChamber]->setSymbol('@');
+}
 
 void Grid::setGrid() {
 	//set stairway
 	setStairs();
-    cout << "stairs" << endl;
 	//potions
+    setPlayer();
 	setPotions();
-    cout << "potions" << endl;
 	// gold
 	setGold();
-    cout << "gold" << endl;
 	// enemies
 	setEnemies();
-    cout << "enemies" << endl;
 }
 
 //Lucus Start 
@@ -280,8 +278,8 @@ void Grid::playerAttack(int ns, int ew) {
 }
 
 Grid::Grid(std::ifstream &i, Player* p) {
-	initGrid(i);
     player = p;
+	initGrid(i);
 }
 
 void Grid::initGrid(std::ifstream &i) {
@@ -314,7 +312,6 @@ void Grid::initGrid(std::ifstream &i) {
 	height = theGrid.size();
 	width = theGrid[0].size();
 	setObservers();
-    cout << "test1" << endl;
 	setGrid();
 }
 
@@ -390,13 +387,6 @@ void Grid::displayGrid() {
 	for (int i = 0; i < height; i++) {
         for (int j = 0; j < width; j++) {
             std::cout << theGrid[i][j]->getSymbol();
-
-        }
-        std::cout << std::endl;
-    }
-    for (int i = 0; i < theChamber.size(); i++) {
-        for (int j = 0; j < theChamber[i].size(); j++) {
-            std::cout << theChamber[i][j]->getSymbol();
 
         }
         std::cout << std::endl;

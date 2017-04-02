@@ -31,7 +31,6 @@ void Game::startGame(std::ifstream &ifs) {
 	if (player == nullptr) return;
 
 	g = new Grid(ifs, player);
-	cout << "test2" << endl;
 	std::string input;
 	bool enemyMove = true;
 

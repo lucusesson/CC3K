@@ -31,6 +31,8 @@ public:
 	bool isWalkable();
 	void move(int ns, int ew);
 	void notify(Info &i) override;
+	int getX();
+	int getY();
 };
 
 #endif
