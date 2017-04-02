@@ -12,7 +12,7 @@ class Grid : public Observer {
 private:
 	int width,height;
 	int stairsChamber;
-	std::vector<std::vector<Tile *>> theGrid;
+
 	std::vector<std::vector<Tile *>> theChamber;
 	std::vector <Character *> characters;
 	std::vector <Item *> items;
@@ -32,6 +32,7 @@ private:
 	void spawnGold(Character& c);
 	void setPlayer();
 public:
+	std::vector<std::vector<Tile *>> theGrid;
 	Player* player;
 	Grid(std::ifstream &i, Player* p);
 	~Grid();

@@ -31,8 +31,13 @@ void Game::startGame(std::ifstream &ifs) {
 	if (player == nullptr) return;
 
 	g = new Grid(ifs, player);
+	int ns,ew;
+			std::cin >> ew;
+			cin >> ns;
+	cout << g->theGrid[ew][ns]->getSymbol() << endl ;
+
 	std::string input;
-	bool enemyMove = true;
+	bool enemyMove = true; 
 
 
 	do {
@@ -41,7 +46,7 @@ void Game::startGame(std::ifstream &ifs) {
 		std::cout << "HP: " << g->player->getHealth() << std::endl;
 		std::cout << "Atk: " << g->player->getAtk() << std::endl;
 		std::cout << "Def: " << g->player->getDef() << std::endl;
-		std::cout << "Action: " << std::endl;
+		std::cout << "Action: ";
 		std::cin >> input;
 		if (input == "q") {
 			std::cout << "You have been defeated" << std::endl;
@@ -60,6 +65,7 @@ void Game::startGame(std::ifstream &ifs) {
 		} else if (input == "no") {
 			if (!g->playerMove(-1, 0)) continue;
 		} else if (input == "so") {
+			cout << "SO" << endl;
 			if (!g->playerMove(1, 0)) continue;
 		} else if (input == "ea") {
 			if (!g->playerMove(0, 1)) continue;

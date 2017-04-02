@@ -252,8 +252,8 @@ void Grid::enemyMove(bool b) {
 
 
 bool Grid::playerMove(int ns, int ew) {
-	if (!theGrid[player->getX()+ew][player->getY()+ns]->isOccupied() && theGrid[player->getX()+ew][player->getY()+ns]->isWalkable()) {
-		theGrid[player->getX()][player->getY()]->move(ns,ew);
+	if (!theGrid[player->getY()+ns][player->getX()+ew]->isOccupied() && theGrid[player->getY()+ns][player->getX()+ew]->isWalkable()) {
+		theGrid[player->getY()][player->getX()]->move(ns,ew);
 		return true;
 	} else {
 		return false;
@@ -271,7 +271,7 @@ void Grid::playerAttack(int ns, int ew) {
 	for (auto &c : characters) {
 		if (player->getX() + ew == c->getX() && player->getY() + ns == c->getY()) {
 			if (player->attack(c) == 0) {
-				theGrid[c->getX()][c->getY()]->despawnCharacter();
+				theGrid[c->getY()][c->getX()]->despawnCharacter();
 			} 
 		}
 	}
@@ -286,31 +286,32 @@ void Grid::initGrid(std::ifstream &i) {
 	char tile;
 	int x = 0;
 	int y = 0;
-	std::vector<Tile *> row;
-	theGrid.resize(25, row);
+	std::vector<Tile *> col;
+	theGrid.resize(79, col);
 
-	while (i >> std::noskipws >> tile && y < 25) {
+	while (i >> std::noskipws >> tile && x < 80 && y< 25) {
 		if (tile == '\n') { 
 			x = 0;
 			++y;
+			continue;
 		} else {
 			Tile *t;
 			if (tile == '.' || tile == '+' || tile == '#') 
 				t = new Tile(tile, x, y, true);
-			else if (tile == ' ' || tile == '|' || tile == '-')
-				t = new Tile(tile, x, y, false);
+			else if (tile == ' ' || tile == '|' || tile == '-'){
+				t = new Tile(tile, x, y, false);}
 			else {
 				std::cout << "Invalid Character -> " << tile << std::endl;
 				return;
 			}
-
 			t->attach(this);
-			theGrid[y].push_back(t);
+			theGrid[x].push_back(t);
 			++x;
+
 		}
 	}
-	height = theGrid.size();
-	width = theGrid[0].size();
+	width = theGrid.size();
+	height = theGrid[0].size();
 	setObservers();
 	setGrid();
 }
@@ -320,8 +321,8 @@ bool Grid::inGrid(int r, int c) {
 }
 
 void Grid::setObservers() {
-	for (int i = 0; i < height; i++) {
-		for (int j = 0; j < width; j++) {
+	for (int i = 0; i < width; i++) {
+		for (int j = 0; j < height; j++) {
 			//If tile is walkable, check each neighbour and if it exists, add to cell Observer list
 			if (theGrid[i][j]->getSymbol() == '.') {
 				if (inGrid(i+1,j)) 
@@ -386,7 +387,7 @@ SubscriptionType Grid::subType() const {
 void Grid::displayGrid() {
 	for (int i = 0; i < height; i++) {
         for (int j = 0; j < width; j++) {
-            std::cout << theGrid[i][j]->getSymbol();
+            std::cout << theGrid[j][i]->getSymbol();
 
         }
         std::cout << std::endl;
