@@ -40,7 +40,8 @@ void Game::startGame(std::ifstream &ifs) {
 	do {
         std::cout << "You are on Level: "+ to_string(g->level + 1) << std::endl;
 		g->displayGrid();
-		std::cout << "Race: " << g->player->getRace() << " Gold: " << g->player->getGold() << std::endl;
+		std::cout << "Race: " << g->player->getRace() << std::endl;
+		std::cout << "Gold: " << g->player->getGold() << std::endl;
 		std::cout << "HP: " << g->player->getHealth() << std::endl;
 		std::cout << "Atk: " << g->player->getAtk() << std::endl;
 		std::cout << "Def: " << g->player->getDef() << std::endl;
