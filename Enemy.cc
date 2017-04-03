@@ -62,7 +62,7 @@ int Halfling::receiveAttack(Character *c) {
             update += this->getSymbol();
             update += " has died\n";
             int gold = this->miss();
-            this->alterGold(gold + 1);
+            c->alterGold(gold + 1);
             return 0;
         } else {
             this->attack(c);
@@ -138,7 +138,7 @@ int Dwarf::receiveAttack(Character *c) {
         update += this->getSymbol();
         update += " has died\n";
         int gold = this->miss();
-        this->alterGold(gold+1);
+        c->alterGold(gold+1);
         return 0;
     }else {
         this->attack(c);
@@ -181,7 +181,7 @@ int Elf::receiveAttack(Character *c) {
         update += this->getSymbol();
         update += " has died\n";
         int gold = this->miss();
-        this->alterGold(gold+1);
+        c->alterGold(gold+1);
         return 0;
     }else {
         this->attack(c);
@@ -221,7 +221,7 @@ int Orc::receiveAttack(Character *c) {
         update += this->getSymbol();
         update += " has died\n";
         int gold = this->miss();
-        this->alterGold(gold+1);
+        c->alterGold(gold+1);
         return 0;
     }else {
         this->attack(c);
