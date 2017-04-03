@@ -18,8 +18,8 @@ class Player: public Character{
 public:
     Player();
     ~Player() override;
-    void addPotion(Item *p) override;
-    bool containPotion(Item *p) override;
+    //void addPotion(Item *p) override;
+    //bool containPotion(Item *p) override;
 };
 
 class Drow: public Player{

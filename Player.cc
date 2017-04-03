@@ -212,7 +212,7 @@ int Shade::receiveAttack(Character *c) {
     return 1;
 }
 
-void Player::addPotion(Item *p) {
+/*void Player::addPotion(Item *p) {
 	potions.push_back(p);
 }
 
@@ -221,5 +221,5 @@ bool Player::containPotion(Item *p) {
 		if (x->getKind() == p->getKind()) return true;
 	}
 	return false;
-}
+}*/
 

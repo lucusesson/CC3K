@@ -14,8 +14,8 @@ class Enemy: public Character{
 public:
     Enemy();
     ~Enemy() override;
-    void addPotion(Item *p) override;
-    bool containPotion(Item *p) override;
+    //void addPotion(Item *p) override;
+   // bool containPotion(Item *p) override;
 };
 
 class Merchant: public Enemy{

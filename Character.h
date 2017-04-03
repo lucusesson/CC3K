@@ -38,8 +38,8 @@ public:
     void alterGold(int a);
     void setXY(int x, int y);
     void getSummary();
-    virtual void addPotion(Item *p) = 0;
-    virtual bool containPotion(Item *p) = 0;
+    //virtual void addPotion(Item *p) = 0;
+    //virtual bool containPotion(Item *p) = 0;
     virtual int attack(Character* c) = 0;
     virtual int receiveAttack(Character* c) = 0;
 };

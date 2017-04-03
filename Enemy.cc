@@ -11,13 +11,14 @@ int Merchant::threat = 0;
 
 Enemy::Enemy() {}
 
+/*
 void Enemy::addPotion(Item *p) {
     return;
 }
 
 bool Enemy::containPotion(Item *p) {
     return false;
-}
+}*/
 
 Enemy::~Enemy(){}
 

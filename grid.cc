@@ -340,7 +340,7 @@ void Grid::playerUsePotion(int ew, int ns) {
 	}
 	Character &c = *player;
 	it->alterPlayer(c);
-	player->addPotion(it);
+	//player->addPotion(it);
 	//cout << "2";
 	theGrid[player->getX()+ew][player->getY()+ns]->despawnItem();
 	theGrid[player->getX()+ew][player->getY()+ns]->despawnItem();
