@@ -188,14 +188,20 @@ void Grid::setPlayer() {
 
 void Grid::setGrid() {
 	//set stairway
+	cout << "0" << endl;
 	setStairs();
 	//potions
+	cout << "1" << endl;
     setPlayer();
+    cout << "2" << endl;
 	setPotions();
+	cout << "3" << endl;
 	// gold
 	setGold();
 	// enemies
+	cout << "4" << endl;
 	setEnemies();
+	cout << "5" << endl;
 }
 
 //Lucus Start 
@@ -286,6 +292,12 @@ bool Grid::playerMove(int ew, int ns) {
 		eraseItem(it);
 		delete it;
 	}
+	if(theGrid[player->getX()+ew][player->getY()+ns]->getSymbol() == '\\'){
+		theGrid[player->getX()+ew][player->getY()+ns]->setSymbol('.');
+		newLevel();
+		++level;
+		return false;
+	}
 	if (!theGrid[player->getX()+ew][player->getY()+ns]->isOccupied() 
 			&& theGrid[player->getX()+ew][player->getY()+ns]->isWalkable()) {
 		theGrid[player->getX()][player->getY()]->move(ns,ew);
@@ -296,14 +308,18 @@ bool Grid::playerMove(int ew, int ns) {
 }
 
 void Grid::newLevel() {
-	for(int i = 0; i < characters.size(); ++i) {
+	for(unsigned int i = 0; i < characters.size(); ++i) {
 		theGrid[characters[i]->getX()][characters[i]->getY()]->despawnCharacter();
 		delete characters[i];
 	}
-	for(int i = 0; i < items.size(); ++i) {
+	characters.clear();
+	for(unsigned int i = 0; i < items.size(); ++i) {
 		theGrid[items[i]->getX()][items[i]->getY()]->despawnItem();
 		delete items[i];
 	}
+	items.clear();
+	theGrid[player->getX()][player->getY()]->despawnCharacter();
+
 	setGrid();
 }
 

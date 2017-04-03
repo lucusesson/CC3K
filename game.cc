@@ -28,14 +28,14 @@ Game::Game() { g = nullptr; }
 
 void Game::startGame(std::ifstream &ifs) {
 
-
 	Player* player = setPlayer();
 	if (player == nullptr) return;
 
 	g = new Grid(ifs, player);
+	g->level = 0;
+
 	std::string input;
 	bool enemyMove = true; 
-	int level = 0;
 
 	do {
 		g->displayGrid();
@@ -83,9 +83,9 @@ void Game::startGame(std::ifstream &ifs) {
 		}
 		g->enemyMove(enemyMove);
 
-	} while (g->player->getHealth() > 0 && !cin.eof() && level < 6);
+	} while (g->player->getHealth() > 0 && !cin.eof() && g->level < 6);
 	delete g;
-	if (level == 6) {
+	if (g->level == 6) {
 		cout << "Congrats on beating the Game!!" << endl;
 	}
 }
