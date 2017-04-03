@@ -11,7 +11,7 @@ atkBoost::atkBoost() {
 atkBoost::~atkBoost() {}
 
 void atkBoost::alterPlayer(Character &c) {
-	c.alterHealth(value);
+	c.alterAttack(value);
 	c.update += "PA consumed an attack boost potion";
 }
 
@@ -25,7 +25,7 @@ atkWound::atkWound() {
 atkWound::~atkWound() {}
 
 void atkWound::alterPlayer(Character &c) {
-	c.alterHealth(value);
+	c.alterAttack(value);
 	c.update += "PA consumed a attack wound potion";
 }
 
@@ -38,7 +38,7 @@ defBoost::defBoost() {
 defBoost::~defBoost() {}
 
 void defBoost::alterPlayer(Character &c) {
-	c.alterHealth(value);
+	c.alterDefence(value);
 	c.update += "PA consumed a defence boost potion";
 }
 
@@ -49,7 +49,7 @@ defWound::defWound() {
 }
 
 void defWound::alterPlayer(Character &c) {
-	c.alterHealth(value);
+	c.alterDefence(value);
 	c.update += "PA consumed a defence wound potion";
 }
 
