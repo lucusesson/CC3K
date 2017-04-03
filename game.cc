@@ -60,21 +60,21 @@ void Game::startGame(std::ifstream &ifs) {
 			if (input == "a") g->playerAttack(ew, ns);
 			else g->playerUsePotion(ew, ns);
 		} else if (input == "no") {
-			if (!playerMove(0, -1)) continue;
+			if (!g->playerMove(0, -1)) continue;
 		} else if (input == "so") {
-			if (!playerMove(0, 1)) continue;
+			if (!g->playerMove(0, 1)) continue;
 		} else if (input == "ea") {
-			if (!playerMove(1, 0)) continue;
+			if (!g->playerMove(1, 0)) continue;
 		} else if (input == "we") {
-			if (!playerMove(-1, 0)) continue;
+			if (!g->playerMove(-1, 0)) continue;
 		} else if (input == "ne") {
-			if (!playerMove(1, -1)) continue; 
+			if (!g->playerMove(1, -1)) continue; 
 		} else if (input == "nw") {
-			if (!playerMove(-1, -1)) continue;
+			if (!g->playerMove(-1, -1)) continue;
 		} else if (input == "se") {
-			if (!playerMove(1, 1)) continue;
+			if (!g->playerMove(1, 1)) continue;
 		} else if (input == "sw") {
-			if (!playerMove(-1, 1)) continue;
+			if (!g->playerMove(-1, 1)) continue;
 		} else {
 			std::cout << "Invalid Command";
 			continue;
@@ -91,3 +91,5 @@ void Game::startGame(std::ifstream &ifs) {
 		cout << "Congrats on beating the Game!!" << endl;
 	}
 }
+
+

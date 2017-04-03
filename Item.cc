@@ -13,4 +13,8 @@ std::string Item::getKind() {
 
 char Item::getSymbol() { return symbol; }
 
+int Item::getX() { return x;}
+
+int Item::getY() { return y;}
+
 

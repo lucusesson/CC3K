@@ -14,6 +14,8 @@ public:
 	virtual ~Item() = default;
 	virtual void alterPlayer(Character &c) = 0;
 	char getSymbol();
+	int getX();
+	int getY();
 	std::string getKind();
 	void setXY(int x, int y);
 };

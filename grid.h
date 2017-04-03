@@ -32,6 +32,8 @@ private:
 	void moveEnemies();
 	void spawnGold(Character& c);
 	void setPlayer();
+	void eraseItem(Item* it);
+
 public:
 	Player* player;
 	Grid(std::ifstream &i, Player* p);
@@ -39,6 +41,7 @@ public:
 	void displayGrid();
 	
 	//start Michael
+	void newLevel();
 	char getSymbol(int ew, int ns);
 	void enemyMove(bool b);
 	bool enemyAttack(Character &c);
