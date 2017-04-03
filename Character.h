@@ -8,6 +8,7 @@
 #include <string>
 #include <stdio.h>
 #include <iostream>
+#include <sstream>
 class Item;
 
 class Character {

@@ -40,16 +40,27 @@ Halfling::Halfling() {
 int Halfling::receiveAttack(Character *c) {
     int a = this->miss();
     if (a == 0){
-        std::cout << c->getSymbol() <<" missed their attack. ";
+        update += c->getSymbol();
+        update += " missed their attack. ";
 
     }
     if (a != 0) {
         int damage = this->damage(this->def, c->getAtk());
         this->health -= damage;
-        std::cout << ((c->getSymbol() == '@')?'P':c->getSymbol()) << ((c->getSymbol() == '@')?'C':' ') << " dealt " << damage << " damage to " << this->getSymbol() << " with their attack. ";
+        if (c->getSymbol() == '@'){
+            update += "PC";
+        } else{
+            update += c->getSymbol();
+        }
+        update += " dealt " ;
+        update += to_string(damage);
+        update += " damage to ";
+        update += this->getSymbol();
+        update += " with their attack.\n";
         //this->getSummary();
         if (this->health <= 0) {
-            std::cout << 'Dead';
+            update += this->getSymbol();
+            update += " has died\n";
             int gold = this->miss();
             this->alterGold(gold + 1);
             return 0;
@@ -76,10 +87,19 @@ int Human::receiveAttack(Character *c) {
     void attack(Character* c);
     int damage = this->damage(this->def, c->getAtk());
     this->health -= damage;
-    std::cout << ((c->getSymbol() == '@')?'P':c->getSymbol()) << ((c->getSymbol() == '@')?'C':' ') << " dealt " << damage << " damage to " << this->getSymbol() << " with their attack. ";
-    // this->getSummary();
+    if (c->getSymbol() == '@'){
+        update += "PC";
+    } else{
+        update += c->getSymbol();
+    }
+    update += " dealt " ;
+    update += to_string(damage);
+    update += " damage to ";
+    update += this->getSymbol();
+    update += " with their attack.\n";
     if (this->health <= 0){
-        std:: cout << 'Dead';
+        update += this->getSymbol();
+        update += " has died\n";
         return 0;
     }else {
         this->attack(c);
@@ -104,10 +124,19 @@ int Dwarf::attack(Character *c) {
 int Dwarf::receiveAttack(Character *c) {
     int damage = this->damage(this->def, c->getAtk());
     this->health -= damage;
-    std::cout << ((c->getSymbol() == '@')?'P':c->getSymbol()) << ((c->getSymbol() == '@')?'C':' ') << " dealt " << damage << " damage to " << this->getSymbol() << " with their attack. ";
-    //this->getSummary();
+    if (c->getSymbol() == '@'){
+        update += "PC";
+    } else{
+        update += c->getSymbol();
+    }
+    update += " dealt " ;
+    update += to_string(damage);
+    update += " damage to ";
+    update += this->getSymbol();
+    update += " with their attack.\n";
     if (this->health <= 0){
-        std:: cout << 'Dead';
+        update += this->getSymbol();
+        update += " has died\n";
         int gold = this->miss();
         this->alterGold(gold+1);
         return 0;
@@ -137,11 +166,20 @@ int Elf::attack(Character *c) {
 
 int Elf::receiveAttack(Character *c) {
     int damage = this->damage(this->def, c->getAtk());
-    std::cout << ((c->getSymbol() == '@')?'P':c->getSymbol()) << ((c->getSymbol() == '@')?'C':' ') << " dealt " << damage << " damage to " << this->getSymbol() << " with their attack. ";
     this->health -= damage;
-    //this->getSummary();
+    if (c->getSymbol() == '@'){
+        update += "PC";
+    } else{
+        update += c->getSymbol();
+    }
+    update += " dealt " ;
+    update += to_string(damage);
+    update += " damage to ";
+    update += this->getSymbol();
+    update += " with their attack.\n";
     if (this->health <= 0){
-        std:: cout << 'Dead';
+        update += this->getSymbol();
+        update += " has died\n";
         int gold = this->miss();
         this->alterGold(gold+1);
         return 0;
@@ -169,10 +207,19 @@ int Orc::attack(Character *c) {
 int Orc::receiveAttack(Character *c) {
     int damage = this->damage(this->def, c->getAtk());
     this->health -= damage;
-    std::cout << ((c->getSymbol() == '@')?'P':c->getSymbol()) << ((c->getSymbol() == '@')?'C':' ') << " dealt " << damage << " damage to " << this->getSymbol() << " with their attack. ";
-    //this->getSummary();
+    if (c->getSymbol() == '@'){
+        update += "PC";
+    } else{
+        update += c->getSymbol();
+    }
+    update += " dealt " ;
+    update += to_string(damage);
+    update += " damage to ";
+    update += this->getSymbol();
+    update += " with their attack.\n";
     if (this->health <= 0){
-        std:: cout << 'Dead';
+        update += this->getSymbol();
+        update += " has died\n";
         int gold = this->miss();
         this->alterGold(gold+1);
         return 0;
@@ -202,10 +249,19 @@ int Merchant::attack(Character *c) {
 int Merchant::receiveAttack(Character *c) {
     int damage = this->damage(this->def, c->getAtk());
     this->health -= damage;
-    std::cout << ((c->getSymbol() == '@')?'P':c->getSymbol()) << ((c->getSymbol() == '@')?'C':' ') << " dealt " << damage << " damage to " << this->getSymbol() << " with their attack. ";
-    //this->getSummary();
+    if (c->getSymbol() == '@'){
+        update += "PC";
+    } else{
+        update += c->getSymbol();
+    }
+    update += " dealt " ;
+    update += to_string(damage);
+    update += " damage to ";
+    update += this->getSymbol();
+    update += " with their attack.\n";
     if (this->health <= 0){
-        std:: cout << 'Dead';
+        update += this->getSymbol();
+        update += " has died\n";
         return 0;
     }else {
         this->attack(c);
@@ -237,10 +293,19 @@ int Dragon::attack(Character *c) {
 int Dragon::receiveAttack(Character *c) {
     int damage = this->damage(this->def, c->getAtk());
     this->health -= damage;
-    std::cout << ((c->getSymbol() == '@')?'P':c->getSymbol()) << ((c->getSymbol() == '@')?'C':' ') << " dealt " << damage << " damage to " << this->getSymbol() << " with their attack. ";
-    //this->getSummary();
+    if (c->getSymbol() == '@'){
+        update += "PC";
+    } else{
+        update += c->getSymbol();
+    }
+    update += " dealt " ;
+    update += to_string(damage);
+    update += " damage to ";
+    update += this->getSymbol();
+    update += " with their attack.\n";
     if (this->health <= 0){
-        std:: cout << 'Dead';
+        update += this->getSymbol();
+        update += " has died\n";
         return 0;
     }else {
         this->attack(c);

@@ -30,15 +30,20 @@ int Drow::attack(Character *c) {
 int Drow::receiveAttack(Character *c) {
     int a = this->miss();
     if (a == 0){
-        std::cout << c->getSymbol() <<" missed their attack. ";
+        update += c->getSymbol();
+        update += " missed their attack.\n";
         return -1;
     }
     int damage = this->damage(this->def, c->getAtk());
     this->health -= damage;
-    std::cout << c->getSymbol() <<" dealt " <<damage << " damage with their attack. ";
+    update+= c->getSymbol();
+    update += " dealt " ;
+    update += to_string(damage);
+    update += " damage to PC ";
+    update += " with their attack.\n";
     //this->getSummary();
     if (this->health <= 0){
-        //std:: cout << 'Dead';
+        update += "PC has died.\n";
         return 0;
     }
     return 1;
@@ -70,16 +75,20 @@ int Vampire::attack(Character *c) {
 int Vampire::receiveAttack(Character *c) {
     int a = this->miss();
     if (a == 0){
-
-        std::cout << c->getSymbol() <<" missed their attack. ";
+        update += c->getSymbol();
+        update += " missed their attack.\n";
         return -1;
     }
     int damage = this->damage(this->def, c->getAtk());
-    std::cout << c->getSymbol() <<" dealt " <<damage << " damage to " << this->getSymbol() << " with their attack. ";
+    update+= c->getSymbol();
+    update += " dealt " ;
+    update += to_string(damage);
+    update += " damage to PC ";
+    update += " with their attack.\n";
     this->health -= damage;
    // this->getSummary();
     if (this->health <= 0){
-        std:: cout << 'Dead';
+        update += "PC has died.\n";
         return 0;
     }
     return 1;
@@ -103,15 +112,20 @@ int Troll::attack(Character *c) {
 int Troll::receiveAttack(Character *c) {
     int a = this->miss();
     if (a == 0){
-        std::cout << c->getSymbol() <<" missed their attack. ";
+        update += c->getSymbol();
+        update += " missed their attack.\n";
         return -1;
     }
     int damage = this->damage(this->def, c->getAtk());
-    std::cout << c->getSymbol() <<" dealt " <<damage << " damage to " << this->getSymbol() << " with their attack. ";
+    update+= c->getSymbol();
+    update += " dealt " ;
+    update += to_string(damage);
+    update += " damage to PC ";
+    update += " with their attack.\n";
     this->health -= damage;
 
     if (this->health <= 0){
-        std:: cout << 'Dead';
+        update += "PC has died.\n";
         return 0;
     }
     cout << endl;
@@ -139,16 +153,21 @@ int Goblin::attack(Character *c) {
 int Goblin::receiveAttack(Character *c) {
     int a = this->miss();
     if (a == 0){
-        std::cout << c->getSymbol() <<" missed their attack. ";
+        update += c->getSymbol();
+        update += " missed their attack.\n";
         return -1;
     }
     int damage = this->damage(this->def, c->getAtk());
     damage = (c->getRace() == "Orcs")? damage * 1.5 : damage;
-    std::cout << c->getSymbol() <<" dealt " <<damage << " damage to " << this->getSymbol() << " with their attack. ";
+    update+= c->getSymbol();
+    update += " dealt " ;
+    update += to_string(damage);
+    update += " damage to PC ";
+    update += " with their attack.\n";
     this->health -= damage;
     //this->getSummary();
     if (this->health <= 0){
-        std:: cout << 'Dead';
+        update += "PC has died.\n";
         return 0;
     }
     cout << endl;
@@ -173,15 +192,20 @@ int Shade::attack(Character *c) {
 int Shade::receiveAttack(Character *c) {
     int a = this->miss();
     if (a == 0){
-        std::cout << c->getSymbol() <<" missed their attack. ";
+        update += c->getSymbol();
+        update += " missed their attack.\n";
         return -1;
     }
     int damage = this->damage(this->def, c->getAtk());
     this->health -= damage;
-    std::cout << c->getSymbol() <<" dealt " <<damage << " damage to " << this->getSymbol() << " with their attack. ";
+    update+= c->getSymbol();
+    update += " dealt " ;
+    update += to_string(damage);
+    update += " damage to PC ";
+    update += " with their attack.\n";
     //this->getSummary();
     if (this->health <= 0){
-        std:: cout << 'Dead';
+        update += "PC has died.\n";
         return 0;
     }
     cout << endl;
