@@ -80,10 +80,6 @@ void Game::startGame(std::ifstream &ifs) {
 			continue;
 		}
 		g->enemyMove(enemyMove);
-		if (g->getSymbol(player->getX(), player->getY()) == '/') {
-			level++;
-			g->newLevel();
-		}
 
 	} while (g->player->getHealth() > 0 && !cin.eof() && level < 6);
 	delete g;
