@@ -188,20 +188,20 @@ void Grid::setPlayer() {
 
 void Grid::setGrid() {
 	//set stairway
-	cout << "0" << endl;
+	//cout << "0" << endl;
 	setStairs();
 	//potions
-	cout << "1" << endl;
+	//cout << "1" << endl;
     setPlayer();
-    cout << "2" << endl;
+    //cout << "2" << endl;
 	setPotions();
-	cout << "3" << endl;
+	//cout << "3" << endl;
 	// gold
 	setGold();
 	// enemies
-	cout << "4" << endl;
+	//cout << "4" << endl;
 	setEnemies();
-	cout << "5" << endl;
+	//cout << "5" << endl;
 }
 
 //Lucus Start 
@@ -336,20 +336,15 @@ void Grid::eraseItem(Item *it) {
 void Grid::playerUsePotion(int ew, int ns) {
 	Item* it = theGrid[player->getX()+ew][player->getY()+ns]->getItem();
 	if(it == nullptr) {
-		cout << "NULL" << endl;
 		return;
 	}
 	Character &c = *player;
-	cout << "so tired" << endl;
 	it->alterPlayer(c);
-	cout << "1" << endl;
 	player->addPotion(it);
 	//cout << "2";
 	theGrid[player->getX()+ew][player->getY()+ns]->despawnItem();
-	cout << "test1" << endl;
 	theGrid[player->getX()+ew][player->getY()+ns]->despawnItem();
 	eraseItem(it);
-	cout << "test2" << endl;
 }
 
 char Grid::getSymbol(int ew, int ns) {
