@@ -5,6 +5,8 @@
 #include "Enemy.h"
 #include <iostream>
 
+using namespace std;
+
 int Merchant::threat = 0;
 
 Enemy::Enemy() {}
@@ -38,24 +40,28 @@ Halfling::Halfling() {
 int Halfling::receiveAttack(Character *c) {
     int a = this->miss();
     if (a == 0){
-        std::cout << "miss";
+        std::cout << c->getSymbol() <<" missed their attack. ";
+
+    }
+    if (a != 0) {
+        int damage = this->damage(this->def, c->getAtk());
+        this->health -= damage;
+        std::cout << ((c->getSymbol() == '@')?'P':c->getSymbol()) << ((c->getSymbol() == '@')?'C':' ') << " dealt " << damage << " damage to " << this->getSymbol() << " with their attack. ";
+        //this->getSummary();
+        if (this->health <= 0) {
+            std::cout << 'Dead';
+            int gold = this->miss();
+            this->alterGold(gold + 1);
+            return 0;
+        } else {
+            this->attack(c);
+        }
+        //this->getSummary();
+        //c->getSummary();
+        return 1;
+    } else {
         return -1;
     }
-    void attack(Character* c);
-    int damage = this->damage(this->def, c->getAtk());
-    this->health -= damage;
-    this->getSummary();
-    if (this->health <= 0){
-        std:: cout << 'Dead';
-        int gold = this->miss();
-        this->alterGold(gold+1);
-        return 0;
-    } else {
-        this->attack(c);
-    }
-    this->getSummary();
-    c->getSummary();
-    return 1;
 }
 
 int Halfling::attack(Character *c) {
@@ -70,14 +76,16 @@ int Human::receiveAttack(Character *c) {
     void attack(Character* c);
     int damage = this->damage(this->def, c->getAtk());
     this->health -= damage;
-    this->getSummary();
+    std::cout << ((c->getSymbol() == '@')?'P':c->getSymbol()) << ((c->getSymbol() == '@')?'C':' ') << " dealt " << damage << " damage to " << this->getSymbol() << " with their attack. ";
+    // this->getSummary();
     if (this->health <= 0){
         std:: cout << 'Dead';
         return 0;
     }else {
         this->attack(c);
     }
-    this->getSummary();
+    cout << endl;
+   // this->getSummary();
     return 1;
 }
 
@@ -96,7 +104,8 @@ int Dwarf::attack(Character *c) {
 int Dwarf::receiveAttack(Character *c) {
     int damage = this->damage(this->def, c->getAtk());
     this->health -= damage;
-    this->getSummary();
+    std::cout << ((c->getSymbol() == '@')?'P':c->getSymbol()) << ((c->getSymbol() == '@')?'C':' ') << " dealt " << damage << " damage to " << this->getSymbol() << " with their attack. ";
+    //this->getSummary();
     if (this->health <= 0){
         std:: cout << 'Dead';
         int gold = this->miss();
@@ -105,7 +114,8 @@ int Dwarf::receiveAttack(Character *c) {
     }else {
         this->attack(c);
     }
-    this->getSummary();
+    cout << endl;
+    //this->getSummary();
     return 1;
 }
 
@@ -127,8 +137,9 @@ int Elf::attack(Character *c) {
 
 int Elf::receiveAttack(Character *c) {
     int damage = this->damage(this->def, c->getAtk());
+    std::cout << ((c->getSymbol() == '@')?'P':c->getSymbol()) << ((c->getSymbol() == '@')?'C':' ') << " dealt " << damage << " damage to " << this->getSymbol() << " with their attack. ";
     this->health -= damage;
-    this->getSummary();
+    //this->getSummary();
     if (this->health <= 0){
         std:: cout << 'Dead';
         int gold = this->miss();
@@ -137,8 +148,9 @@ int Elf::receiveAttack(Character *c) {
     }else {
         this->attack(c);
     }
-    this->getSummary();
-    c->getSummary();
+    cout << endl;
+    //this->getSummary();
+    //c->getSummary();
     return 1;
 }
 
@@ -157,7 +169,8 @@ int Orc::attack(Character *c) {
 int Orc::receiveAttack(Character *c) {
     int damage = this->damage(this->def, c->getAtk());
     this->health -= damage;
-    this->getSummary();
+    std::cout << ((c->getSymbol() == '@')?'P':c->getSymbol()) << ((c->getSymbol() == '@')?'C':' ') << " dealt " << damage << " damage to " << this->getSymbol() << " with their attack. ";
+    //this->getSummary();
     if (this->health <= 0){
         std:: cout << 'Dead';
         int gold = this->miss();
@@ -166,7 +179,7 @@ int Orc::receiveAttack(Character *c) {
     }else {
         this->attack(c);
     }
-    this->getSummary();
+    cout << endl;
     return 1;
 }
 
@@ -189,14 +202,15 @@ int Merchant::attack(Character *c) {
 int Merchant::receiveAttack(Character *c) {
     int damage = this->damage(this->def, c->getAtk());
     this->health -= damage;
-    this->getSummary();
+    std::cout << ((c->getSymbol() == '@')?'P':c->getSymbol()) << ((c->getSymbol() == '@')?'C':' ') << " dealt " << damage << " damage to " << this->getSymbol() << " with their attack. ";
+    //this->getSummary();
     if (this->health <= 0){
         std:: cout << 'Dead';
         return 0;
     }else {
         this->attack(c);
     }
-    this->getSummary();
+    cout << endl;
     return 1;
 }
 
@@ -223,12 +237,14 @@ int Dragon::attack(Character *c) {
 int Dragon::receiveAttack(Character *c) {
     int damage = this->damage(this->def, c->getAtk());
     this->health -= damage;
-    this->getSummary();
+    std::cout << ((c->getSymbol() == '@')?'P':c->getSymbol()) << ((c->getSymbol() == '@')?'C':' ') << " dealt " << damage << " damage to " << this->getSymbol() << " with their attack. ";
+    //this->getSummary();
     if (this->health <= 0){
         std:: cout << 'Dead';
         return 0;
     }else {
         this->attack(c);
     }
+    cout << endl;
     return 1;
 }

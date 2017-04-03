@@ -59,7 +59,6 @@ void Character::alterGold(int a) {
 }
 
 int Character::damage(int def, int atk) {
-    std::cout << "DAMAGE:" << ceil((100.0/(100.0+def))*atk) << std::endl;
     return ceil((100.0/(100.0+def))*atk);
 }
 
@@ -82,9 +81,9 @@ int Character::getGold() {
 
 void Character::getSummary() {
     std::cout << "Health: " << health << std::endl;
-    std::cout << "atk: " << atk << std::endl;
-    std::cout << "def: " << def << std::endl;
-    std::cout << "gold: " << gold << std::endl;
+    std::cout << "Atk: " << atk << std::endl;
+    std::cout << "Def: " << def << std::endl;
+    std::cout << "Gold: " << gold << std::endl;
 }
 
 char Character::getSymbol() {

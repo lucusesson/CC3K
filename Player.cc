@@ -5,6 +5,8 @@
 #include "Player.h"
 #include "Enemy.h"
 
+using namespace std;
+
 Player::Player() {
     this->setSymbol('@');
 }
@@ -20,20 +22,23 @@ Drow::Drow() {
 }
 
 int Drow::attack(Character *c) {
-    return c->receiveAttack(this);
+    int a =  c->receiveAttack(this);
+    cout << endl;
+    return a;
 }
 
 int Drow::receiveAttack(Character *c) {
     int a = this->miss();
     if (a == 0){
-        std::cout << "miss";
+        std::cout << c->getSymbol() <<" missed their attack. ";
         return -1;
     }
     int damage = this->damage(this->def, c->getAtk());
     this->health -= damage;
-    this->getSummary();
+    std::cout << c->getSymbol() <<" dealt " <<damage << " damage with their attack. ";
+    //this->getSummary();
     if (this->health <= 0){
-        std:: cout << 'Dead';
+        //std:: cout << 'Dead';
         return 0;
     }
     return 1;
@@ -58,18 +63,21 @@ int Vampire::attack(Character *c) {
             a = 0;
         }
     }
+    cout << endl;
     return a;
 }
 
 int Vampire::receiveAttack(Character *c) {
     int a = this->miss();
     if (a == 0){
-        std::cout << "miss";
+
+        std::cout << c->getSymbol() <<" missed their attack. ";
         return -1;
     }
     int damage = this->damage(this->def, c->getAtk());
+    std::cout << c->getSymbol() <<" dealt " <<damage << " damage to " << this->getSymbol() << " with their attack. ";
     this->health -= damage;
-    this->getSummary();
+   // this->getSummary();
     if (this->health <= 0){
         std:: cout << 'Dead';
         return 0;
@@ -87,22 +95,26 @@ Troll::Troll() {
     this->maxHealth = 120;
 }
 int Troll::attack(Character *c) {
-    return c->receiveAttack(this);
+    int a =  c->receiveAttack(this);
+    cout << endl;
+    return a;
 }
 
 int Troll::receiveAttack(Character *c) {
     int a = this->miss();
     if (a == 0){
-        std::cout << "miss";
+        std::cout << c->getSymbol() <<" missed their attack. ";
         return -1;
     }
     int damage = this->damage(this->def, c->getAtk());
+    std::cout << c->getSymbol() <<" dealt " <<damage << " damage to " << this->getSymbol() << " with their attack. ";
     this->health -= damage;
-    this->getSummary();
+
     if (this->health <= 0){
         std:: cout << 'Dead';
         return 0;
     }
+    cout << endl;
     return 1;
 }
 
@@ -120,23 +132,26 @@ int Goblin::attack(Character *c) {
     if (res == 0){
         this->gold += 5;
     }
+    cout << endl;
     return res;
 }
 
 int Goblin::receiveAttack(Character *c) {
     int a = this->miss();
     if (a == 0){
-        std::cout << "miss";
+        std::cout << c->getSymbol() <<" missed their attack. ";
         return -1;
     }
     int damage = this->damage(this->def, c->getAtk());
     damage = (c->getRace() == "Orcs")? damage * 1.5 : damage;
+    std::cout << c->getSymbol() <<" dealt " <<damage << " damage to " << this->getSymbol() << " with their attack. ";
     this->health -= damage;
-    this->getSummary();
+    //this->getSummary();
     if (this->health <= 0){
         std:: cout << 'Dead';
         return 0;
     }
+    cout << endl;
     return 1;
 }
 
@@ -150,22 +165,26 @@ Shade::Shade() {
 }
 
 int Shade::attack(Character *c) {
-    return c->receiveAttack(this);
+    int a =  c->receiveAttack(this);
+    cout << endl;
+    return a;
 }
 
 int Shade::receiveAttack(Character *c) {
     int a = this->miss();
     if (a == 0){
-        std::cout << "miss";
+        std::cout << c->getSymbol() <<" missed their attack. ";
         return -1;
     }
     int damage = this->damage(this->def, c->getAtk());
     this->health -= damage;
-    this->getSummary();
+    std::cout << c->getSymbol() <<" dealt " <<damage << " damage to " << this->getSymbol() << " with their attack. ";
+    //this->getSummary();
     if (this->health <= 0){
         std:: cout << 'Dead';
         return 0;
     }
+    cout << endl;
     return 1;
 }
 

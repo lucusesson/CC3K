@@ -320,11 +320,11 @@ void Grid::eraseItem(Item *it) {
 void Grid::playerUsePotion(int ew, int ns) {
 	Item* it = theGrid[player->getX()+ew][player->getY()+ns]->getItem();
 	Character &c = *player;
-	cout << "so tired" << endl;
+	//cout << "so tired" << endl;
 	it->alterPlayer(c);
-	cout << "1" << endl;
+	//cout << "1" << endl;
 	player->addPotion(it);
-	cout << "2";
+	//cout << "2";
 	theGrid[player->getX()+ew][player->getY()+ns]->despawnItem();
 	eraseItem(it);
 }
@@ -348,6 +348,7 @@ void Grid::playerAttack(int ns, int ew) {
 		}
 	} else {
 		cout << "FAILED" << endl;
+		return;
 	}
 }
 
