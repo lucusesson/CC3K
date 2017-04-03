@@ -64,7 +64,7 @@ void Game::startGame(std::ifstream &ifs) {
 			std::cin >> ns;
 			std::cin >> ew; 
 			if (input == "a") g->playerAttack(ew, ns);
-			else g->playerUsePotion(ew, ns);
+			else g->playerUsePotion(ns, ew);
 		} else if (input == "no") {
 			if (!g->playerMove(0, -1)) continue;
 		} else if (input == "so") {
