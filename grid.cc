@@ -335,6 +335,7 @@ void Grid::eraseItem(Item *it) {
 
 void Grid::playerUsePotion(int ew, int ns) {
 	Item* it = theGrid[player->getX()+ew][player->getY()+ns]->getItem();
+	if(it == nullptr) return;
 	Character &c = *player;
 	//cout << "so tired" << endl;
 	it->alterPlayer(c);
