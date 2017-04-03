@@ -512,3 +512,5 @@ void Grid::spawnGold(Character& c) {
 	}
 }
 //End Stephen
+
+

@@ -48,3 +48,4 @@ dragonHoard::~dragonHoard() {}
 void dragonHoard::alterPlayer(Character &c) {
 	c.alterGold(6);
 }
+

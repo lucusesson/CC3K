@@ -313,3 +313,4 @@ int Dragon::receiveAttack(Character *c) {
     cout << endl;
     return 1;
 }
+

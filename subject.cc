@@ -19,3 +19,4 @@ void Subject::notifyObservers(SubscriptionType t) {
 		if (ob->subType() == t) ob->notify(i);
 	}	
 }
+

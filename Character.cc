@@ -105,3 +105,4 @@ void Character::getSummary() {
 char Character::getSymbol() {
     return this->symbol;
 }
+
