@@ -6,6 +6,8 @@
 #include <math.h>
 Character::~Character() {}
 
+std::string Character::update = "";
+
 bool Character::isDead() {
     if (this->health <= 0){
         return true;

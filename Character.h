@@ -10,10 +10,6 @@
 #include <iostream>
 class Item;
 
-
-/*
- *
- */
 class Character {
 protected:
     std::string race;
@@ -23,6 +19,7 @@ protected:
     void setRace(std::string race);
     void setSymbol(char sym);
 public:
+    static std::string update;
     virtual ~Character() = 0;
     std::string getRace();
     bool isDead();
@@ -43,5 +40,7 @@ public:
     virtual int attack(Character* c) = 0;
     virtual int receiveAttack(Character* c) = 0;
 };
+
+
 
 #endif //CC3K_CHARACTER_H
