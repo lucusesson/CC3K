@@ -36,6 +36,8 @@ private:
 
 public:
 	Player* player;
+	int level;
+
 	Grid(std::ifstream &i, Player* p);
 	~Grid();
 	void displayGrid();
