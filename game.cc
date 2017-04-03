@@ -44,6 +44,7 @@ void Game::startGame(std::ifstream &ifs) {
 		std::cout << "HP: " << g->player->getHealth() << std::endl;
 		std::cout << "Atk: " << g->player->getAtk() << std::endl;
 		std::cout << "Def: " << g->player->getDef() << std::endl;
+		std::cout << "Move Summary:" << std::endl;
 		std::cout << player->update << std::endl;
 		player->update = "";
 		std::cout << "Action: ";
@@ -90,5 +91,7 @@ void Game::startGame(std::ifstream &ifs) {
 		cout << "Congrats on beating the Game!!" << endl;
 	}
 }
+
+
 
 
