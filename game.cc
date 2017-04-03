@@ -37,6 +37,7 @@ void Game::startGame(std::ifstream &ifs) {
 	std::string input;
 	bool enemyMove = true; 
 
+
 	do {
         std::cout << "You are on Level: "+ to_string(g->level + 1) << std::endl;
 		g->displayGrid();
