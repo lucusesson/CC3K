@@ -38,6 +38,7 @@ void Game::startGame(std::ifstream &ifs) {
 	bool enemyMove = true; 
 
 	do {
+        std::cout << "You are on Level: "+ to_string(g->level + 1) << std::endl;
 		g->displayGrid();
 		std::cout << "Race: " << g->player->getRace() << " Gold: " << g->player->getGold() << std::endl;
 		std::cout << "HP: " << g->player->getHealth() << std::endl;
