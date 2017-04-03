@@ -78,7 +78,7 @@ void Game::startGame(std::ifstream &ifs) {
 		} else if (input == "sw") {
 			if (!g->playerMove(-1, 1)) continue;
 		} else {
-			std::cout << "Invalid Command";
+			std::cout << "Invalid Command" << std::endl;
 			continue;
 		}
 		g->enemyMove(enemyMove);
