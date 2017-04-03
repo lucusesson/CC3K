@@ -49,6 +49,14 @@ void Character::setXY(int x, int y) {
 
 }
 
+void Character::alterAttack(int a) {
+    atk += a;
+}
+
+void Character::alterDefence(int a) {
+    def += a;
+}
+
 void Character::alterHealth(int a) {
     if (this->health + a >= this->maxHealth){
         this->health = this->maxHealth;

@@ -32,6 +32,8 @@ public:
     int getX();
     int getY();
     char getSymbol();
+    void alterDefence(int a);
+    void alterAttack(int a);
     void alterHealth(int a);
     void alterGold(int a);
     void setXY(int x, int y);
