@@ -69,16 +69,16 @@ void Character::alterHealth(int a) {
 void Character::alterGold(int a) {
     this->gold += a;
     if(a == 1) {
-    update += "PA picked-up a small pile of gold. PA gold has increased by 1. ";
+    update += "PC picked-up a small pile of gold. PC gold has increased by 1. ";
     }
     else if(a == 2) {
-        update += "PA picked-up a normal pile of gold. PA gold has increased by 2. ";
+        update += "PC picked-up a normal pile of gold. PC gold has increased by 2. ";
     }
     else if(a == 4) {
-        update += "PA picked-up a Merchant Hoard. PA gold has increase by 4. ";
+        update += "PC picked-up a Merchant Hoard. PC gold has increase by 4. ";
     }
     else if(a == 6) {
-        update += "PA picked-up a Dragon Hoard. PA gold has increased by 6. ";
+        update += "PC picked-up a Dragon Hoard. PC gold has increased by 6. ";
     }
 }
 
