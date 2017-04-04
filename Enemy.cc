@@ -158,11 +158,7 @@ Elf::Elf() {
 }
 
 int Elf::attack(Character *c) {
-    int a = c->receiveAttack(this);
-    if (c->getRace() != "Drow"){
-        a = c->receiveAttack(this);
-    }
-    return a;
+    return c->receiveAttack(this);
 }
 
 int Elf::receiveAttack(Character *c) {

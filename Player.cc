@@ -16,7 +16,7 @@ Player::~Player() {}//potions.clear();}
 Drow::Drow() {
     this->setRace("Drow");
     this->health = 150;
-    this->atk = 250000000;
+    this->atk = 25;
     this->def = 15;
     this->gold = 0;
 }

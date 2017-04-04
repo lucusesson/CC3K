@@ -227,7 +227,6 @@ void Grid::enemyMove(bool b) {
 	// true move and attack
 	int ns, ew, x, y;
 	for(auto &c : characters) {
-			// TODO FIX ENEMY ATTACK
 		
 		if (!enemyAttack(*c) && b) {
 			for (int i = 0; i < 6; i++) {
@@ -461,8 +460,8 @@ int Grid::inChamber(int r, int c) {
 		return theChamber.size() - 1;
 	}
 
-	for (int chamber = 0; chamber < theChamber.size(); ++chamber) {
-		for (int cell = 0; cell < theChamber[chamber].size(); ++cell) {
+	for (unsigned int chamber = 0; chamber < theChamber.size(); ++chamber) {
+		for (unsigned int cell = 0; cell < theChamber[chamber].size(); ++cell) {
 			if (theChamber[chamber][cell] == t) return chamber; 
 		}
 	}
@@ -493,8 +492,8 @@ void Grid::notify(Info &i) {
 }
 
 Grid::~Grid() {
-	for (int i = 0; i < theGrid.size(); i++){
-        for (int j = 0; j < theGrid[0].size();j++){
+	for (unsigned int i = 0; i < theGrid.size(); i++){
+        for (unsigned int j = 0; j < theGrid[0].size();j++){
             delete theGrid[i][j];
         }
 	}

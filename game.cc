@@ -88,6 +88,10 @@ void Game::startGame(std::ifstream &ifs) {
 		g->enemyMove(enemyMove);
 
 	} while (g->player->getHealth() > 0 && !cin.eof() && g->level < 6);
+	std::cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+	std::cout << player->update << std::endl;
+	player->update = "";
+		
 	delete g;
 	if (g->level == 6) {
 		cout << "Congrats on beating the Game!!" << endl;
